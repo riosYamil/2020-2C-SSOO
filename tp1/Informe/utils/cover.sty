@@ -1,0 +1,113 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cover}[2020/08/22 v1 de caratula para TPs de la UADE by Gabriel Yamil Rios Burgoa]
+\RequirePackage{ifthen}
+\usepackage[pdftex]{graphicx}
+
+\let\Subject\relax
+\let\Title\relax
+\let\Subtitle\relax
+\let\Group\relax
+\let\Date\relax
+
+% Variables for cover
+\def\subject#1{\def\Subject{#1}}
+\def\title#1{\def\Title{#1}}
+\def\subtitle#1{\def\Subtitle{#1}}
+\def\group#1{\def\Group{#1}}
+\def\date#1{\def\Date{#1}}
+
+%Containter for students attributes
+\newtoks\studentList\studentList={}
+\newtoks\nameCol\nameCol={}
+\newtoks\legajoCol\legajoCol={}
+\newtoks\emailCol\emailCol={}
+
+%Aux for student function
+\newcounter{studentAmount}
+\setcounter{studentAmount}{0}
+
+%Custom command for insert a student
+\def\student#1#2#3{
+    \studentList=\expandafter{\the\studentList\rule{0pt}{1.2em}#1&#2&\tt #3\\[0.2em]}
+    
+    \ifthenelse{\value{studentAmount} > 0}{
+        \nameCol=\expandafter{\the\nameCol & #1}
+        \legajoCol=\expandafter{\the\legajoCol & #2}
+        \emailCol=\expandafter{\the\emailCol & \tt #3}
+    }{
+        \nameCol=\expandafter{\the\nameCol #1}
+        \legajoCol=\expandafter{\the\legajoCol #2}
+        \emailCol=\expandafter{\the\emailCol \tt #3}
+    }
+    \addtocounter{studentAmount}{1}
+}
+
+
+% Template for students table
+\newcommand{\studentsTable}{\ }
+\newcommand{\studentTableV}{
+    \begin{tabular}[t]{| l @{\hspace{4ex}} c @{\hspace{4ex}} l|}
+        \hline
+        \multicolumn{1}{||c}{\textbf{Alumno}} & \textbf{Legajo} &  \multicolumn{1}{c||}{\textbf{Email}} \\[0.2em]
+        \hline \hline
+        \the\studentList
+        \hline
+    \end{tabular}
+}
+
+\def\custommaketitle{
+    \thispagestyle{empty}
+
+    \hfill \includegraphics[scale=.5]{./utils/uade.png}
+
+    \noindent \textbf{\huge \Title}  \medskip \\
+    \ifx\Subtitle\relax\else\noindent\textbf{\large \Subtitle} \\ \fi
+
+    \noindent \rule{\textwidth}{1 pt}
+
+    {\noindent\large\Date \hspace*\fill \Subject} \\
+
+    \medskip
+
+    \begin{center}
+        \ifx\Group\relax\else\textbf{\Group}\par\bigskip\fi
+        \studentsTable
+    \end{center}
+
+    \vfill
+
+    \begin{minipage}[t]{\textwidth}
+         \hfill \begin{minipage}[t]{.4 \textwidth}
+                    \includegraphics[scale=.45]{./utils/logo_uade.png}
+                \end{minipage}
+                
+         \hfill \begin{minipage}[t]{.43 \textwidth}
+            \textbf{Facultad de ingenier\'ia y ciencias exactas} \\
+            \textsf{Universidad Argentina de la Empresa} \\
+            {
+            \scriptsize
+            Lima 775 (Campus Montserrat) - C1073AA0 \\
+            Ciudad Aut\'onoma de Buenos Aires - Rep. Argentina \\
+            Tel: 0800-122-8233 / (+54 11) 5892-1783 \\
+            http://www.uade.edu.ar \\
+            }
+        \end{minipage}
+    \end{minipage}
+
+    \newpage
+}
+
+% override default LaTeX function
+\renewcommand{\maketitle}{\custommaketitle}
+\@makeother\*
+
+% Layout for cover with logo, student table and titles.
+\DeclareOption{generalGraph}{\renewcommand{\maketitle}{\custommaketitle}}
+\DeclareOption{studentV}{\renewcommand{\studentsTable}{\studentTableV}}
+
+% Default options
+\ExecuteOptions{studentV}
+\ExecuteOptions{generalGraph}
+
+\ProcessOptions\relax
