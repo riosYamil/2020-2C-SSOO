@@ -153,4 +153,104 @@ root       56536       2  0 23:25 ?        00:00:00 [kworker/2:2-events]
 
 \end{lstlisting}
 
+\begin{quoting}
+Usando pgrep, liste todos los PIDs (Process Ids) de procesos que tengan “bash” en su comando de
+ejecución, redirija la salida a un archivo de texto, y repita esto último 2 veces más (agregando al final del
+archivo). Luego, liste el contenido del archivo de manera ordenada, eliminando las líneas repetidas y
+almacene dicho listado en un archivo (todo esto en un mismo comando!).
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ pgrep -a 'bash' > salida.txt 
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ for i in {1..2}; do pgrep -a 'bash' >> salida.txt; done;
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat salida.txt
+171 kworker/u9:0-hci0
+586 kworker/u9:2-hci0
+22688 kworker/0:2H-kblockd
+43634 kworker/1:1H-events_highpri
+44977 kworker/0:0H-events_highpri
+49833 kworker/1:3-events
+50057 kworker/3:1H-events_highpri
+52077 kworker/3:0-events
+53321 kworker/1:0H-events_highpri
+53655 kworker/2:2H-events_highpri
+56536 kworker/2:2-events
+57317 kworker/3:0H-kblockd
+58274 kworker/0:0-events
+58322 kworker/2:1H-events_highpri
+59267 kworker/0:2-cgroup_destroy
+59479 kworker/1:0-cgroup_destroy
+72417 kworker/u8:1-events_power_efficient
+72542 kworker/3:2-events
+76710 kworker/u8:0-events_unbound
+77525 kworker/2:1-events
+77957 kworker/u8:4-i915
+78263 kworker/u8:2-events_power_efficient
+171 kworker/u9:0-hci0
+586 kworker/u9:2-hci0
+22688 kworker/0:2H-events_highpri
+43634 kworker/1:1H-events_highpri
+44977 kworker/0:0H-events_highpri
+49833 kworker/1:3-mm_percpu_wq
+50057 kworker/3:1H-events_highpri
+52077 kworker/3:0-mm_percpu_wq
+53321 kworker/1:0H-events_highpri
+53655 kworker/2:2H-events_highpri
+56536 kworker/2:2-mm_percpu_wq
+57317 kworker/3:0H-kblockd
+58274 kworker/0:0-mm_percpu_wq
+58322 kworker/2:1H-events_highpri
+59267 kworker/0:2-cgroup_destroy
+59479 kworker/1:0-cgroup_destroy
+72417 kworker/u8:1-events_power_efficient
+72542 kworker/3:2-events
+76710 kworker/u8:0-i915
+77525 kworker/2:1-events
+77957 kworker/u8:4-events_unbound
+78263 kworker/u8:2-events_power_efficient
+78751 kworker/u8:3
+171 kworker/u9:0-hci0
+586 kworker/u9:2-hci0
+22688 kworker/0:2H-kblockd
+43634 kworker/1:1H-events_highpri
+44977 kworker/0:0H-events_highpri
+49833 kworker/1:3-events
+50057 kworker/3:1H-events_highpri
+52077 kworker/3:0-events
+53321 kworker/1:0H-events_highpri
+53655 kworker/2:2H-events_highpri
+56536 kworker/2:2-mm_percpu_wq
+57317 kworker/3:0H-kblockd
+58274 kworker/0:0-mm_percpu_wq
+58322 kworker/2:1H-kblockd
+59267 kworker/0:2-cgroup_destroy
+59479 kworker/1:0-cgroup_destroy
+72417 kworker/u8:1-events_power_efficient
+72542 kworker/3:2-events
+76710 kworker/u8:0-i915
+77525 kworker/2:1-events
+77957 kworker/u8:4-events_unbound
+78263 kworker/u8:2+flush-8:0
+78751 kworker/u8:3
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat salida.txt | sort -r | uniq -u > tmp.txt  
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat tmp.txt 
+78263 kworker/u8:2+flush-8:0
+77957 kworker/u8:4-i915
+76710 kworker/u8:0-events_unbound
+58322 kworker/2:1H-kblockd
+58274 kworker/0:0-events
+56536 kworker/2:2-events
+52077 kworker/3:0-mm_percpu_wq
+49833 kworker/1:3-mm_percpu_wq
+22688 kworker/0:2H-events_highpri
+\end{lstlisting}
+
 \end{section}
