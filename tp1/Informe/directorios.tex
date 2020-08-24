@@ -1,2 +1,192 @@
 \begin{section}{Directorios}
+
+\begin{quoting}
+¿Para qué se usa el comando cd?
+\end{quoting}
+
+Si bien usamos este comando durante casi todo el TP, tratamos de responder esta parte del TP ejecutando el siguiente comando sin exito:
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ man cd
+No manual entry for cd
+
+\end{lstlisting}
+
+En base a nuestra experiencia, podemos decir que el comando cd (change directory) sirve para cambiar de directorios dentro una sesión del terminal\\
+
+\begin{quoting}
+Ejecute las siguientes variantes de cd y observe cuál fue el resultado
+obtenido:
+\end{quoting}
+
+\begin{itemize}
+\item textbf{cd /}
+
+\begin{lstlisting}[style=Ubuntu]
+~
+grios@personal-pc:~$ cd /
+
+/
+grios@personal-pc:~$ pwd
+/
+\end{lstlisting}
+Nos lleva al directorio root del sistema.
+
+\item textbf{cd}
+\begin{lstlisting}[style=Ubuntu]
+/
+grios@personal-pc:~$ cd 
+
+~
+grios@personal-pc:~$ pwd
+/home/grios
+\end{lstlisting}
+Nos dirige al directorio root del usuario,
+
+\item textbf{cd /etc}
+\begin{lstlisting}[style=Ubuntu]
+~
+grios@personal-pc:~$ cd /etc
+
+/etc
+grios@personal-pc:~$ pwd
+/etc
+\end{lstlisting}
+Nos dirige al directorio root llamado '/etc'. En este directorio se persisten archivos de configuración del sistema operativo y paquetes instalados.
+
+\item textbf{cd .}
+\begin{lstlisting}[style=Ubuntu]
+/etc
+grios@personal-pc:~$ cd .
+
+/etc
+grios@personal-pc:~$ pwd
+/etc
+\end{lstlisting}
+Nos direcciona al directorio actual.
+
+\item textbf{cd ..}
+\begin{lstlisting}[style=Ubuntu]
+/etc
+grios@personal-pc:~$ cd ..
+
+/
+grios@personal-pc:~$ pwd
+/
+\end{lstlisting}
+Nos redireccionó al directorio superior, es decir, directorio root del sistema.
+\end{itemize}
+
+
+\begin{quoting}
+Investigue que hacen los comandos:
+\end{quoting}
+
+\begin{itemize}
+\item textbf{mkdir}
+Este comando nos permite crear un directorio vacío.
+\item textbf{rmdir}
+Este comando nos permite borrar un directorio vacío.
+\item textbf{rm}
+Este comando nos permite borrar archivos, por defaul no borra directorios pero podría hacerlo si se le setea el flag '-r'
+\end{itemize}
+
+
+\begin{quoting}
+Borre un directorio que no se encuentra vacío.
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ mkdir temporal_dir
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls temporal_dir 
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ touch temporal_dir/temp_file
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ rm -r temporal_dir
+\end{lstlisting}
+
+\begin{quoting}
+Borre un directorio que no se encuentra vacío.
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cd
+
+~
+grios@personal-pc:~$ mkdir undir
+
+~
+grios@personal-pc:~$ cd undir
+
+\end{lstlisting}
+
+
+\begin{quoting}
+Ingrese a dicho directorio, y tipee lo siguiente para crear muchos archivos “while (true) do ps >
+\$RANDOM.text; done;”. Tipee ctrl.+c luego de 5 seg para finalizar el comando. Luego tipee ls para
+corroborar la creación de los archivos.
+\end{quoting}
+
+Un detalle en este punto, simplemente notamos que el comando solicitado no genera los N archivos esperados, sino que se generaba uno solo. Supusimos que esto es porque la función definida dentro de \$RANDOM devuelve un valor distinto cada vez que es consultado por el comando 'echo \$RANDOM', como en la instrucción propuesta sólo se usa para persistir un file sin llamar al comando 'echo', el valor que devuelve \$RANDOM nunca cambia haciendo que siempre se genere un solo archivo.
+
+Dicho esto, cambiarmos el comando propuesto para que se ejecute un 'echo \$RANDOM' luego de persistido el archivo.
+
+\begin{lstlisting}[style=Ubuntu]
+~/undir
+grios@personal-pc:~$ while (true) do ps > $RANDOM.txt; echo $RANDOM; done;
+
+~
+grios@personal-pc:~$ ls
+10054.txt  15581.txt  1981.txt   24335.txt  30462.txt  5262.txt
+10422.txt  15784.txt  19847.txt  24355.txt  30603.txt  5319.txt
+10623.txt  15834.txt  19848.txt  2452.txt   30675.txt  5322.txt
+10624.txt  15995.txt  20074.txt  24673.txt  30903.txt  5489.txt
+10635.txt  15997.txt  20197.txt  24884.txt  3101.txt   5541.txt
+10805.txt  16047.txt  20308.txt  25109.txt  31260.txt  5675.txt
+10829.txt  16049.txt  20348.txt  25166.txt  31407.txt  572.txt
+10982.txt  16081.txt  2037.txt   25269.txt  31550.txt  5775.txt
+11000.txt  16094.txt  20386.txt  25333.txt  31599.txt  5934.txt
+11582.txt  16335.txt  20388.txt  25562.txt  31631.txt  5978.txt
+11632.txt  16398.txt  20663.txt  25625.txt  31781.txt  6138.txt
+12090.txt  16446.txt  20782.txt  25775.txt  31819.txt  6372.txt
+12106.txt  1654.txt   20877.txt  2584.txt   31839.txt  6437.txt
+12120.txt  16668.txt  21009.txt  26048.txt  31856.txt  6476.txt
+12139.txt  16743.txt  21023.txt  26061.txt  31934.txt  6506.txt
+12237.txt  16871.txt  21321.txt  26135.txt  31940.txt  6525.txt
+12465.txt  16944.txt  21527.txt  26330.txt  31941.txt  6544.txt
+12530.txt  17020.txt  2156.txt   26343.txt  31965.txt  658.txt
+12689.txt  17257.txt  21634.txt  2641.txt   32057.txt  6632.txt
+12728.txt  17324.txt  21863.txt  26527.txt  32088.txt  6703.txt
+12813.txt  17425.txt  21919.txt  26704.txt  32288.txt  6890.txt
+12880.txt  17618.txt  21935.txt  26719.txt  32539.txt  6937.txt
+12932.txt  17631.txt  21956.txt  26768.txt  32555.txt  7029.txt
+13002.txt  17648.txt  21962.txt  2685.txt   32649.txt  7343.txt
+13176.txt  17676.txt  22065.txt  26909.txt  32667.txt  7427.txt
+13214.txt  1774.txt   2247.txt   27087.txt  32717.txt  7487.txt
+13261.txt  17811.txt  22538.txt  27137.txt  32766.txt  7654.txt
+13514.txt  18180.txt  22549.txt  27153.txt  3287.txt   7793.txt
+13716.txt  18183.txt  22639.txt  27273.txt  3321.txt   8147.txt
+13879.txt  1821.txt   22879.txt  27994.txt  
+\end{lstlisting}
+
+
+\begin{quoting}
+Tipee “rm *” e investigue que pasó.
+\end{quoting}\\
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ rm *
+zsh: sure you want to delete more than 100 files in /home/grios/undir [yn]? y
+
+grios@personal-pc:~$ ls
+
+\end{lstlisting}
+
+El comando rm (remove) borró todos los archivos de la carpeta actual. Esto se dió porque se hizo uso del wild card del asterisco (*), este comodín permite hacer referencia a todos los elemento del directorio actual y es por eso que se borraron.
 \end{section}
