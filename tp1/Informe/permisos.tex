@@ -1,0 +1,302 @@
+\begin{section}{Permisos}
+
+\begin{quoting}
+Cree un archivo tipeando “ls > archivo”.
+\end{quoting}
+
+\begin{lstlisting}[style=Ubuntu]
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls
+enunciado.pdf  Informe
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls > archivo
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls 
+archivo enunciado.pdf  Informe
+
+\end{lstlisting}
+
+
+\begin{quoting}
+Tipee ls –l en dicho directorio: los primeros 10 caracteres corresponden a los permisos. Investigue
+como se estructuran los permisos de un archivo (puede tipear info y luego ir a la sección de “permisos de
+archivo” o “file permissions”).
+\end{quoting}
+
+\begin{lstlisting}[style=Ubuntu]
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l
+total 200
+-rw-rw-r-- 1 grios grios     30 ago 23 18:59 archivo
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 19:01 Informe
+\end{lstlisting}
+
+Los permiso de un archivo se estructuran con 10 caracteres (10 bits), los cuales se ven representados de la siguiente forma:
+\\
+
+\begin{bytefield}[endianness=big,bitwidth=5em, bitheight=3ex]{10}
+	
+	\bitheader{0-9}\\
+
+	\bitbox{1}{-}& 
+	\bitbox{1}{r}&
+	\bitbox{1}{w}&
+	\bitbox{1}{x}
+	\bitbox{1}{r}&
+	\bitbox{1}{w}&
+	\bitbox{1}{x}
+	\bitbox{1}{r}&
+	\bitbox{1}{w}&
+	\bitbox{1}{x}\\
+
+	\bitbox{1}{archivo}& 
+	\bitbox{3}{permiso del usuario}&
+	\bitbox{3}{permisos de grupo}&
+	\bitbox{3}{permisos para otros}
+\end{bytefield}\\
+Notese que el bit más significativo tiene el caracter '-', el cual indica que corresponde a un archivo.
+
+Donde la primer fila corresponde a permisos básicos que son \textbf{lectura (r), escritura (w) y ejecución (x)}.
+Una vez mencinados estos 3 tipos de permisos podemos ver que estos se agrupan de a tercios, donde cada uno corresponde a \textbf{permisos de usuarios, grupos y otros}. 
+\\
+
+\begin{quoting}
+Investigue que hacen esos comandos.
+\end{quoting}
+\begin{itemize}
+\item chmod
+El comando 'change mode' permite cambiar los permisos de acceso sobre archivos y directorios. 
+\item chown
+El comando 'change owner' permite el propiertario de archivos o directorios.  
+\end{itemize}
+
+\begin{quoting}
+Haga que el archivo “archivo” creado anteriormente pueda ser modificado por cualquier usuario.
+\end{quoting}
+
+\begin{lstlisting}[style=Ubuntu]
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ chmod o+rw archivo
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l             
+total 200
+-rw-rw-rw- 1 grios grios     30 ago 23 18:59 archivo
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 19:58 Informe
+\end{lstlisting}
+
+
+\begin{quoting}
+Compruebe que logró el punto anterior logueandose en otra Terminal con otro usuario y
+modificando dicho archivo (tipeando nuevamente “ls > archivo”).
+\end{quoting}
+
+\begin{lstlisting}[style=Ubuntu]
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ sudo useradd -m -d $HOME test_user
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ sudo login test_user
+Password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-42-generic x86_64)...
+
+$ cd uade_workplace/ssoo/tp1
+$ ls 
+archivo  enunciado.pdf	Informe
+$ ls > archivo
+$ ls -l 
+total 200
+-rw-rw-rw- 1 grios grios     30 ago 23 20:44 archivo
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 19:58 Informe
+
+\end{lstlisting}
+
+\begin{quoting}
+Loguéese con el usuario original y quite los todos los permisos del archivo (lectura, escritura y
+ejecución) a todos los usuarios distintos del dueño y de los que pertenecen al mismo grupo. Luego, haga que
+el nuevo dueño del archivo sea el otro usuario.
+\end{quoting}
+
+\begin{lstlisting}[style=Ubuntu]
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ chmod o-rwx,g-rwx archivo
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l                     
+total 200
+-rw------- 1 grios grios     30 ago 23 20:53 archivo
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 20:58 Informe
+
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ chown test_user archivo
+chown: changing ownership of 'archivo': Operation not permitted
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ sudo chown test_user archivo
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l
+total 200
+-rw------- 1 test_user grios     30 ago 23 20:53 archivo
+-rw-rw-r-- 1 grios     grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios     grios   4096 ago 23 20:58 Informe
+
+\end{lstlisting}
+
+\begin{quoting}
+¿Cómo haría para volver a poseer dicho archivo sin loguearse con el nuevo dueño del archivo?
+\end{quoting}
+
+La forma de recuperar la propiedad de un archivo es ejecutando ejecutan el comando chown con permisos de superusuario, por ejemplo:
+
+\begin{lstlisting}[style=Ubuntu]
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l
+total 200
+-rw------- 1 test_user grios     30 ago 23 20:53 archivo
+-rw-rw-r-- 1 grios     grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios     grios   4096 ago 23 20:58 Informe
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ sudo chown grios archivo
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l
+total 204
+-rw------- 1 grios grios     30 ago 23 20:53 archivo
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 20:58 Informe
+
+\end{lstlisting}
+
+
+\begin{quoting}
+Investigue qué es el “SUID bit” (busque en “man chmod”).
+\end{quoting}\\
+El SUID bit (setup ID bit) se indica que todo aquel que ejecute el archivo tendrá, durante la ejecución, los mismo privilegios que el usuario owner del archivo.\\
+
+\begin{quoting}
+Investigue como aplica la estructura de los permisos a los directorios.
+\end{quoting}\\
+Al igual que los archivos, los permiso de un directorio se estructuran con 10 caracteres (10 bits), los cuales se ven representados de la siguiente forma:\\
+\begin{bytefield}[endianness=big,bitwidth=5em, bitheight=3ex]{10}
+	
+	\bitheader{0-9}\\
+
+	\bitbox{1}{d}& 
+	\bitbox{1}{r}&
+	\bitbox{1}{w}&
+	\bitbox{1}{x}
+	\bitbox{1}{r}&
+	\bitbox{1}{w}&
+	\bitbox{1}{x}
+	\bitbox{1}{r}&
+	\bitbox{1}{w}&
+	\bitbox{1}{x}\\
+
+	\bitbox{1}{directorio}& 
+	\bitbox{3}{permiso del usuario}&
+	\bitbox{3}{permisos de grupo}&
+	\bitbox{3}{permisos para otros}
+\end{bytefield}\\
+Notese que el bit más significativo tiene el caracter 'd', el cual indica que corresponde a un directorio.\\
+
+\begin{quoting}
+Loguéese como root en otra Terminal y cree un directorio tipeando “mkdir /undir”.
+\end{quoting}\\
+\begin{lstlisting}[style=Ubuntu]
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ su
+Password: 
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l
+total 204
+-rw------- 1 grios grios     30 ago 23 20:53 archivo
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 20:58 Informe
+
+root@grios-pc:/home/grios/uade_workplace/ssoo/tp1# mkdir undir
+
+root@grios-pc:/home/grios/uade_workplace/ssoo/tp1# ls -l
+total 200
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 22:16 Informe
+drwxr-xr-x 2 root  root    4096 ago 23 22:26 undir
+\end{lstlisting}
+
+\begin{quoting}
+Haga que cualquier usuario tenga todo tipo de permisos sobre ese directorio.
+\end{quoting}\\
+\begin{lstlisting}[style=Ubuntu]
+root@grios-pc:/home/grios/uade_workplace/ssoo/tp1# chmod o+rwx undir/
+
+root@grios-pc:/home/grios/uade_workplace/ssoo/tp1# ls -l
+total 200
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 22:16 Informe
+drwxr-xrwx 2 root  root    4096 ago 23 22:26 undir
+\end{lstlisting}
+
+\begin{quoting}
+Deshaga lo que acaba de hacer, y cree el subdirectorio “subdir” dentro de “/undir”
+\end{quoting}\\
+\begin{lstlisting}[style=Ubuntu]
+root@grios-pc:/home/grios/uade_workplace/ssoo/tp1# exit
+exit
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ mkdir undir/subdir
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l undir 
+total 4
+drwxrwxr-x 2 grios grios 4096 ago 23 22:33 subdir
+\end{lstlisting}
+
+\begin{quoting}
+Investigue como cambiar los permisos de manera recursiva sobre /undir para que todos sus
+archivos, subdirectorios y archivos dentro de los subdirectorios se vean afectados.
+\end{quoting}\\
+
+Para cambiar permisos sobre un directorio de manera recursiva se debe ejecutar 'chmod' con el flag '-R'.
+
+\begin{lstlisting}[style=Ubuntu]
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l
+total 200
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 22:37 Informe
+drwxr-xrwx 3 root  root    4096 ago 23 22:33 undir
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l undir
+total 4
+drwxrwxr-x 2 grios grios 4096 ago 23 22:33 subdir
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ chmod -R o+wrx undir
+chmod: changing permissions of 'undir': Operation not permitted
+
+grios@personal-pc:~$ ls -l
+total 200
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 23 22:37 Informe
+drwxr-xrwx 3 root  root    4096 ago 23 22:33 undir
+
+~uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l undir
+total 4
+drwxrwxrwx 2 grios grios 4096 ago 23 22:33 subdir
+
+
+\end{lstlisting}
+
+\end{section}

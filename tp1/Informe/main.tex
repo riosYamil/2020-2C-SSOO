@@ -1,0 +1,91 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[paper=a4paper, hmargin=1.5cm, bottom=2cm, top=2.0cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+%run this commands: 
+%sudo apt-get install texlive-lang-spanish
+%sudo apt-get install texlive-science
+\usepackage[utf8]{inputenc} 
+\usepackage{silence}
+\usepackage{utils/cover}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, linkcolor=black]{hyperref}
+
+%for this project
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{bytefield}
+
+\pagestyle{fancy}
+\thispagestyle{fancy}
+
+%header
+\lhead{Sistemas Operativos - TP N°1 - Tutorial de introducción a Linux}
+\rhead{\includegraphics[width=2cm]{header_uade.png}}
+
+%footer
+\cfoot{\thepage\ de \pageref{LastPage}}
+
+%aux functions
+\lstset{
+	literate={\#}{{$\#$}}1 {~}{{$\sim$}}1
+}
+
+
+\definecolor{ubuntuterminalcolor}{rgb}{0.19, 0.04, 0.14}
+\lstdefinestyle{Ubuntu}
+{
+    language=bash,
+    backgroundcolor=\color{ubuntuterminalcolor},
+    basicstyle=\scriptsize\color{white}\ttfamily,
+    breaklines=false
+}
+
+
+\begin{document}
+	%Cover variables
+	\subject{Sistemas Operativos}
+	\title{Trabajo Práctico I}
+	\subtitle{Tutorial de introducción a Linux}
+	\group{Group N° 16}
+	%\date{22/08/2020}
+	\student{Cantero, Lucas Alejandro}{1116559}{studentA@uade.edu.ar} 
+	\student{Ledesma, Eric}{1119065}{studentA@uade.edu.ar} 
+	\student{Nicolino, Sebastian}{1130322}{studentB@uade.edu.ar}
+	\student{Rios Burgoa Gabriel Yamil}{1129370}{griosburgoa@uade.edu.ar} 
+
+	%init cover
+	\maketitle
+
+	%Index
+	\tableofcontents
+
+	%Files
+	\newpage
+	\input{ayuda.tex}
+	\newpage
+	\input{teclado_terminales.tex}
+	\newpage
+	\input{sistema.tex}
+	\newpage
+	\input{usuarios.tex}
+	\newpage
+	\input{archivos.tex}
+	\newpage
+	\input{permisos.tex}
+	\newpage
+	\input{directorios.tex}
+	\newpage
+	\input{filtros.tex}
+	\newpage
+	\input{redireccionamiento.tex}
+	\newpage
+	\input{pipelines.tex}
+	\newpage
+	\input{vim.tex}
+	\newpage
+	\input{shell_scripting.tex}
+\end{document}
+
+
