@@ -1,2 +1,113 @@
 \begin{section}{Redireccionamiento de E/S}
+
+\begin{quoting}
+Antes de que un comando sea ejecutado, su entrada/salida estándar pueden ser redireccionados
+usando una notación especial del shell. Investíguelo tipeando “man bash” y llegando luego a la sección
+“REDIRECTIONS”.
+\end{quoting}
+
+\begin{subsection}{Redireccionando la salida estándar}
+
+\begin{quoting}
+Ejecute el comando “ps -fea” y redirija su salida a un archivo llamado “salida.txt”.
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ps -fea > salida.txt
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l 
+total 220
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 24 00:48 Informe
+-rw-rw-r-- 1 grios grios  24438 ago 24 01:05 salida.txt
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$  tail salida.txt 
+root       59479       2  0 00:00 ?        00:00:00 [kworker/1:0-cgroup_destroy]
+root       59480       1  0 00:00 ?        00:00:00 /usr/sbin/cupsd -l
+root       59481       1  0 00:00 ?        00:00:00 /usr/sbin/cups-browsed
+root       60305       2  0 00:06 ?        00:00:03 [kworker/u8:4-events_power_efficient]
+root       67582       2  0 00:20 ?        00:00:02 [kworker/u8:2-events_power_efficient]
+root       68421       2  0 00:28 ?        00:00:03 [kworker/u8:0-events_unbound]
+root       72417       2  0 00:53 ?        00:00:00 [kworker/u8:1-i915]
+root       72542       2  0 00:55 ?        00:00:00 [kworker/3:2-events]
+root       72789       2  0 00:59 ?        00:00:00 [kworker/2:0-events]
+grios      73248    2710  0 01:05 pts/0    00:00:00 ps -fea
+
+\end{lstlisting}
+
+\begin{quoting}
+Ídem punto anterior, pero que se agregue la salida del comando al final del archivo.
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ps -fea >> salida.txt
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l                
+total 244
+-rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
+drwxrwxr-x 3 grios grios   4096 ago 24 00:48 Informe
+-rw-rw-r-- 1 grios grios  48780 ago 24 01:06 salida.txt
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ tail salida.txt      
+www-data   59407     980  0 00:00 ?        00:00:00 /usr/sbin/apache2 -k start
+root       59479       2  0 00:00 ?        00:00:00 [kworker/1:0-cgroup_destroy]
+root       59480       1  0 00:00 ?        00:00:00 /usr/sbin/cupsd -l
+root       59481       1  0 00:00 ?        00:00:00 /usr/sbin/cups-browsed
+root       67582       2  0 00:20 ?        00:00:02 [kworker/u8:2-events_unbound]
+root       68421       2  0 00:28 ?        00:00:03 [kworker/u8:0-i915]
+root       72417       2  0 00:53 ?        00:00:00 [kworker/u8:1-events_power_efficient]
+root       72542       2  0 00:55 ?        00:00:00 [kworker/3:2-events]
+root       72789       2  0 00:59 ?        00:00:00 [kworker/2:0-events]
+grios      73349    2710  0 01:06 pts/0    00:00:00 ps -fea
+
+\end{lstlisting}
+
+Como se puede ver, la forma de redireccionar el standard output es usando los símbolos:
+
+\begin{itemize}
+	\item \textbf{>} que nos permite crear un archivo o sobreescribir uno ya existente. 
+	\item \textbf{\(\gg\)} que nos permite crear un archivo y si este ya existe nos permite agregar el contenido del output al final del archivo.
+\end{itemize}
+
+La forma en que verificamos que el enunciado se haya ejecutado como se esperaba fue ejecutando una serie de comandos. 
+\begin{itemize}
+	\item El comando 'ls -l' que nos permite ver el tamaño del archivo salida.txt
+	\item El comando 'tail salida.txt' que nos permite ver las últimas líneas de un archivo.
+\end{itemize}
+
+\end{subsection}
+
+\begin{subsection}{Redireccionando la entrada estándar}
+
+\begin{quoting}
+El comando “grep cadena archivo” imprime las líneas de archivo que contengan “cadena”.
+Investigue cómo hacer para lograr el mismo resultado sin especificarle a grep un archivo (investigue, si es
+necesario, qué hace grep cuando no se le especifica un archivo).
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ grep 'sublime' salida.txt   
+grios       3446    1794  1 ago22 ?        00:21:25 /snap/sublime-text/85/opt/sublime_text/sublime_text
+grios       3458    3446  0 ago22 ?        00:00:40 /snap/sublime-text/85/opt/sublime_text/plugin_host 3446 --auto-shell-env
+grios       3446    1794  1 ago22 ?        00:21:28 /snap/sublime-text/85/opt/sublime_text/sublime_text
+grios       3458    3446  0 ago22 ?        00:00:40 /snap/sublime-text/85/opt/sublime_text/plugin_host 3446 --auto-shell-env
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ grep 'sublime' <  salida.txt
+grios       3446    1794  1 ago22 ?        00:21:25 /snap/sublime-text/85/opt/sublime_text/sublime_text
+grios       3458    3446  0 ago22 ?        00:00:40 /snap/sublime-text/85/opt/sublime_text/plugin_host 3446 --auto-shell-env
+grios       3446    1794  1 ago22 ?        00:21:28 /snap/sublime-text/85/opt/sublime_text/sublime_text
+grios       3458    3446  0 ago22 ?        00:00:40 /snap/sublime-text/85/opt/sublime_text/plugin_host 3446 --auto-shell-env
+
+\end{lstlisting}
+
+Como se puede ver, la forma de cambiar el standard input es usando el simbolo <.
+Por otro lado, si el comando grep no recibe un archivo se quedará escuchando la standard input, es decir, la terminal.
+
+\end{subsection}
+
 \end{section}
