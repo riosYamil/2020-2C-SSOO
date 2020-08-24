@@ -20,7 +20,7 @@ Como se mencionó anteriormente este comando le permite hacer cambios en el sist
 comportamiento default de este comando permite \textbf{cambiar el usuario actual por un usuario root dentro de la misma sesión dentro de la terminal} y así ejecutar cuantas instrucciones necesitemos.
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ su
 Password: 
 
@@ -33,7 +33,7 @@ root@personal-pc:~$
 El comando sudo tiene un comportamiento similar al anterior, pero nos permite ejecutar instrucciones sin necesidad de iniciar o cambiar de usuario.
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo apt-get install {your-favorite-package}        
 [sudo] password for grios: 
 \end{lstlisting}
@@ -51,7 +51,7 @@ Investigue los comandos:
 Como se mencionó anteriormente este comando permite loggearse, dentro de una sesión de terminal, con un usuario con máximos privilegios.
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ su
 Password: 
 root@personal-pc:~#
@@ -62,7 +62,7 @@ Es un comando que permite iniciar sesión, dentro del terminal, como otro usuari
 
 La forma analoga a ejecutar el comando su sería:
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo login
 [sudo] password for grios: 
 grios-pc login: root
@@ -110,7 +110,7 @@ Cree un nuevo usuario, cree un nuevo grupo, y agregue el usuario a ese grupo.
 
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ su
 Password: 
 
@@ -138,7 +138,7 @@ Investigue qué hace el comando:
 \item \textbf{deluser:}
 Este comando permite quitar usuarios de un grupo.
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo deluser {your_favorite_user} {your_favorite_group} 
 \end{lstlisting}
 
@@ -155,7 +155,7 @@ archivos).
 \end{quoting}
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo deluser test_user --remove-home  
 [sudo] password for grios: 
 Looking for files to backup/remove ...
@@ -178,7 +178,7 @@ Para lograr esto encontramos 3 formas:
 En el archivo /etc/group se puede encontrar información relevante de todos los grupos creados en el sistema, y si usamos el comando grep podemos obtener información del grupo que nos interese, como por ejemplo los usuarios que pertenecen a él.
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ cat /etc/group | grep 'test_user'
 test_user:x:1001:
 test_group:x:1002:test_user
@@ -188,7 +188,7 @@ test_group:x:1002:test_user
 El comando getent nos listará todos los grupos existentes en nuestra máquina, si usamos la misma tactica que antes podemo hacer un grep y ver a qué grupo pertenece un usuario puntual.
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ getent group | grep 'test_user'
 test_group:x:1002:test_user
 test_user:x:1001:
@@ -198,7 +198,7 @@ test_user:x:1001:
 El comando groups quizá es el más adecuado para averiguar todos los grupos a los que pertenece un usuario, la forma de ejecutarlo es:
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ groups test_user
 test_user : test_user test_group
 \end{lstlisting}

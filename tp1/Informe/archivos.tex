@@ -10,7 +10,7 @@
 \item \textbf{cp:}
 Permite copiar un archivo o varios desde un directorio origen a un destino.
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ cp {sourche_path} {destination_path}
 \end{lstlisting}
 
@@ -20,25 +20,25 @@ Permite mover un archivo (o directorio) desde un directorio origen a uno de dest
 \begin{itemize}
 \item Move directorio
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ mv folder_test /your/favorite/destination_path/
 \end{lstlisting}
 
 \item Move archivo
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ mv test_file.txt /your/favorite/destination_path/
 \end{lstlisting}
 
 \item Renombrar directorio
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ mv /your/favorite/directory/ /your/favorite/directory/ your_favorite_new_directory_name
 \end{lstlisting}
 
 \item Renombrar archivos
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ mv test_file.txt test_file_with_new_name.txt
 \end{lstlisting}
 \end{itemize}
@@ -48,13 +48,13 @@ Permite borrar archivos y si se usa recursivamente (flag -r) permite borrar dire
 \begin{itemize}
 \item Borrar directorio
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ rm folder_test
 \end{lstlisting}
 
 \item Borrar archivo
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ mv -r /your/favorite/directory/
 \end{lstlisting}
 
@@ -67,19 +67,19 @@ Este comando nos permite realizar transferencias de archivos o directorios desde
 \begin{itemize}
 \item Transferencia local a remoto
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ scp test_file.txt test_user_a@domain.com:/home/test_user_a
 \end{lstlisting}
 
 \item Transferencia remoto a local
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ scp test_user_a@domain.com:/home/test_user_a/test_file.txt /home/grios
 \end{lstlisting}
 
 \item Transferencia remoto a remoto
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ scp test_user_a@domain.com:/home/test_user_a/test_file.txt test_user_b@domain.com:/home/test_user_b/
 \end{lstlisting}
 
@@ -88,21 +88,21 @@ grios@personal-pc:~$ scp test_user_a@domain.com:/home/test_user_a/test_file.txt 
 \item \textbf{telnet:}
 Este comando permite acceder de manera remota a un servidor mediante el protocolo telnet y ejecutar comandos de manera remota, hoy por hoy este comando es reemplazado en muchos casos por ssh, dado que telnet no es considerado un método seguro de transferencia de datos.
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ telnet {your_favorite_ip}:{your_favorite_port}
 \end{lstlisting}
 
 \item \textbf{ssh:}
 Este comando tiene las mismas prestaciones que el comando telnet, pero con la difernecia que se usa un protocolo ssh estableciendo un canal seguro ya que las información se transporta encriptada
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ssh test_user@yourfavoriteserver.domain.com {your_favorite_command}
 \end{lstlisting}
 
 \item \textbf{touch:}
 Este comando generalmente se usa para crear archivos vacíos o cambiar las tiempos de actualización de un archivo preexistente (sólo el tiempo de acceso y tiempo de modificación).
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ touch test_file.txt
 \end{lstlisting}
 \end{itemize}
@@ -116,7 +116,7 @@ desplazarse del directorio inicial (/root).
 \end{quoting}
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ su
 Password: 
 root@personal-pc:/home/grios# cd /root/
@@ -124,11 +124,11 @@ root@personal-pc:~# cp .bashrc /var/.bashrc
 root@personal-pc:~# cp /var/.bashrc /home/.bashrc
 root@personal-pc:~# exit
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc~$ l /var | grep 'bashrc' 
 -rw-r--r--  1 root root     3,1K ago 23 12:55 .bashrc
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc~$ l /home | grep 'bashrc' 
 -rw-r--r--  1 root  root  3,1K ago 23 12:56 .bashrc
                                                              

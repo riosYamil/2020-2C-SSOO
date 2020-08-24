@@ -5,14 +5,14 @@ Cree un archivo tipeando “ls > archivo”.
 \end{quoting}
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls
 enunciado.pdf  Informe
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls > archivo
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls 
 archivo enunciado.pdf  Informe
 
@@ -26,7 +26,7 @@ archivo” o “file permissions”).
 \end{quoting}
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l
 total 200
 -rw-rw-r-- 1 grios grios     30 ago 23 18:59 archivo
@@ -78,10 +78,10 @@ Haga que el archivo “archivo” creado anteriormente pueda ser modificado por 
 \end{quoting}
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ chmod o+rw archivo
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l             
 total 200
 -rw-rw-rw- 1 grios grios     30 ago 23 18:59 archivo
@@ -96,10 +96,10 @@ modificando dicho archivo (tipeando nuevamente “ls > archivo”).
 \end{quoting}
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo useradd -m -d $HOME test_user
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo login test_user
 Password: 
 Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-42-generic x86_64)...
@@ -123,10 +123,10 @@ el nuevo dueño del archivo sea el otro usuario.
 \end{quoting}
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ chmod o-rwx,g-rwx archivo
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l                     
 total 200
 -rw------- 1 grios grios     30 ago 23 20:53 archivo
@@ -134,14 +134,14 @@ total 200
 drwxrwxr-x 3 grios grios   4096 ago 23 20:58 Informe
 
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ chown test_user archivo
 chown: changing ownership of 'archivo': Operation not permitted
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo chown test_user archivo
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l
 total 200
 -rw------- 1 test_user grios     30 ago 23 20:53 archivo
@@ -157,17 +157,17 @@ drwxrwxr-x 3 grios     grios   4096 ago 23 20:58 Informe
 La forma de recuperar la propiedad de un archivo es ejecutando ejecutan el comando chown con permisos de superusuario, por ejemplo:
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l
 total 200
 -rw------- 1 test_user grios     30 ago 23 20:53 archivo
 -rw-rw-r-- 1 grios     grios 194796 ago 23 02:48 enunciado.pdf
 drwxrwxr-x 3 grios     grios   4096 ago 23 20:58 Informe
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo chown grios archivo
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l
 total 204
 -rw------- 1 grios grios     30 ago 23 20:53 archivo
@@ -212,11 +212,11 @@ Notese que el bit más significativo tiene el caracter 'd', el cual indica que c
 Loguéese como root en otra Terminal y cree un directorio tipeando “mkdir /undir”.
 \end{quoting}\\
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ su
 Password: 
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l
 total 204
 -rw------- 1 grios grios     30 ago 23 20:53 archivo
@@ -252,10 +252,10 @@ Deshaga lo que acaba de hacer, y cree el subdirectorio “subdir” dentro de �
 root@grios-pc:/home/grios/uade_workplace/ssoo/tp1# exit
 exit
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ mkdir undir/subdir
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l undir 
 total 4
 drwxrwxr-x 2 grios grios 4096 ago 23 22:33 subdir
@@ -269,19 +269,19 @@ archivos, subdirectorios y archivos dentro de los subdirectorios se vean afectad
 Para cambiar permisos sobre un directorio de manera recursiva se debe ejecutar 'chmod' con el flag '-R'.
 
 \begin{lstlisting}[style=Ubuntu]
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l
 total 200
 -rw-rw-r-- 1 grios grios 194796 ago 23 02:48 enunciado.pdf
 drwxrwxr-x 3 grios grios   4096 ago 23 22:37 Informe
 drwxr-xrwx 3 root  root    4096 ago 23 22:33 undir
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l undir
 total 4
 drwxrwxr-x 2 grios grios 4096 ago 23 22:33 subdir
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ chmod -R o+wrx undir
 chmod: changing permissions of 'undir': Operation not permitted
 
@@ -291,7 +291,7 @@ total 200
 drwxrwxr-x 3 grios grios   4096 ago 23 22:37 Informe
 drwxr-xrwx 3 root  root    4096 ago 23 22:33 undir
 
-~uade_workplace/ssoo/tp1
+~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l undir
 total 4
 drwxrwxrwx 2 grios grios 4096 ago 23 22:33 subdir
