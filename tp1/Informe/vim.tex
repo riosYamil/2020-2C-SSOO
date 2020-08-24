@@ -1,2 +1,53 @@
 \begin{section}{Vim}
+
+\begin{quoting}
+Vim es uno de los editores de texto que vienen por defecto instalados en todo sistema Linux.\\
+Tipee “man vim” para investigar un poco sus características.\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ man vim
+
+VIM(1)                   General Commands Manual                  VIM(1)
+
+NAME
+	...
+SYNOPSIS
+       vim [options] [file ..]
+
+DESCRIPTION
+       Vim is a text editor that is upwards compatible to Vi.  It can be
+       used to edit all kinds of plain text.  It  is  especially  useful
+       for editing programs.
+
+\end{lstlisting}
+
+\begin{quoting}
+Para crear un archivo y editarlo con el vim, tipee “vim archivo.txt”. \\
+Para comenzar a escribir debe ingresar al modo edición, presionando la tecla a. Escriba un poco de
+texto y luego salga del modo de edición presionando <ESC>.\\
+Para grabar el archivo, presione: w (estando fuera del modo edición).\\
+Para salir del editor, presione: q (estando fuera del modo edición).\\
+Para profundizar sobre el vim (más adelante, cuando sea necesario) puede tipear “vim”. Así entrará a
+una pantalla desde la cual podrá tipear “:help” y ingresar a la ayuda. También puede tipear vimtutor, un
+programa que ofrece un tutorial completo del vim.
+\end{quoting}
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ vim archivo.txt
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat archivo.txt 
+Hello world
+
+\end{lstlisting}
+
+En los comandos de arriba se creó un archivo.txt con vim, donde se escribió 'Hello world'. \\
+
+\begin{quoting}
+En caso de no sentirse cómodo con el vim, investigue el programa “nano”
+\end{quoting}
+
+Tal como vim, nano es un editor de texto cuya curva de aprendizaje pronunciada.
+
 \end{section}
