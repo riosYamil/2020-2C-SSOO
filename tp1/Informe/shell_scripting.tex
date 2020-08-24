@@ -1,2 +1,65 @@
 \begin{section}{Shell scripting y otras cuestiones}
+
+\begin{subsection}{Variables de entorno}
+
+
+\begin{quoting}
+¿Qué es una variable de entorno? ¿Qué significa exportar una variable?¿Cómo se la exporta?
+\end{quoting}
+La definición dentro de lo que es sistemas operativos comprende a variables que pueden ser creadas, editadas, guardas y eliminadas por procesos que corren dentro de nuestro ordenador. Estas variables, dentro de linux son marcadores de posición de información almacenada dentro del sistema operativo que pasa datos a los programas iniciados en shell (interpretes de comandos). 
+
+El concepto de exportar variables de entorno viene de integrar estas variables dentro de un shell script, la forma de hacerlo es mediante el comando 'export', que nos permite declarar una variable y su tiempo de vida estará determinado por el tiempo de ejecución del shell script.\\
+
+\begin{quoting}
+Cree un script llamado environ.sh que exporte una variable y luego imprima su valor en pantalla.
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat environ.sh 
+export TEMP_ENV_VAR=your_favorite_variable
+echo $TEMP_ENV_VAR
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ sh environ.sh 
+your_favorite_variable
+\end{lstlisting}
+
+\begin{quoting}
+Después ejecute dicho script en la forma “./environ.sh”. Al finalizar el script verifique si dicha
+variable se encuentra en el entorno del shell actual. Investigue qué ocurrió.
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ echo $TEMP_ENV_VAR
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$
+\end{lstlisting}
+La variable no se imprimió dado que fue creada dentro del script, y su alcance sólo es local, es decir, durante la ejecución del script. \\
+
+\begin{quoting}
+Ejecute el mismo script en la forma “source ./environ.sh”
+\end{quoting}
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ source environ.sh 
+your_favorite_variable 
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ echo $TEMP_ENV_VAR
+your_favorite_variable
+\end{lstlisting}
+
+\begin{quoting}
+¿Qué ocurrió ahora? Investigue sobre el comando “source”
+\end{quoting}\\
+Lo que ocurrió es que el comando 'source' ejecutó nuestro script y conservo la nueva variable de entorno después de finalizado el script. 
+Lo que hace el comando 'source' es ejecutar el script dentro del mismo proceso que está corriendo la terminal (proceso init), y \textbf{NO} genera otro distinto, es por eso que al finalizar la ejecución del script las variables de entonces se mantienen con el mismo estado que el script modificó.
+
+\end{subsection}
+
+\begin{subsection}{Procesos en primer y segundo plano}
+\end{subsection}
+
+
 \end{section}

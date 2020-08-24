@@ -3,7 +3,6 @@
 \begin{quoting}
 Cree un archivo tipeando “ls > archivo”.
 \end{quoting}
-
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls
@@ -15,16 +14,13 @@ grios@personal-pc:~$ ls > archivo
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls 
 archivo enunciado.pdf  Informe
-
 \end{lstlisting}
-
 
 \begin{quoting}
 Tipee ls –l en dicho directorio: los primeros 10 caracteres corresponden a los permisos. Investigue
 como se estructuran los permisos de un archivo (puede tipear info y luego ir a la sección de “permisos de
 archivo” o “file permissions”).
 \end{quoting}
-
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l
@@ -76,7 +72,6 @@ El comando 'change owner' permite el propiertario de archivos o directorios.
 \begin{quoting}
 Haga que el archivo “archivo” creado anteriormente pueda ser modificado por cualquier usuario.
 \end{quoting}
-
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ chmod o+rw archivo
@@ -89,12 +84,10 @@ total 200
 drwxrwxr-x 3 grios grios   4096 ago 23 19:58 Informe
 \end{lstlisting}
 
-
 \begin{quoting}
 Compruebe que logró el punto anterior logueandose en otra Terminal con otro usuario y
 modificando dicho archivo (tipeando nuevamente “ls > archivo”).
 \end{quoting}
-
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ sudo useradd -m -d $HOME test_user
@@ -121,7 +114,6 @@ Loguéese con el usuario original y quite los todos los permisos del archivo (le
 ejecución) a todos los usuarios distintos del dueño y de los que pertenecen al mismo grupo. Luego, haga que
 el nuevo dueño del archivo sea el otro usuario.
 \end{quoting}
-
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ chmod o-rwx,g-rwx archivo
@@ -153,7 +145,7 @@ drwxrwxr-x 3 grios     grios   4096 ago 23 20:58 Informe
 \begin{quoting}
 ¿Cómo haría para volver a poseer dicho archivo sin loguearse con el nuevo dueño del archivo?
 \end{quoting}
-
+\\
 La forma de recuperar la propiedad de un archivo es ejecutando ejecutan el comando chown con permisos de superusuario, por ejemplo:
 
 \begin{lstlisting}[style=Ubuntu]
@@ -175,7 +167,6 @@ total 204
 drwxrwxr-x 3 grios grios   4096 ago 23 20:58 Informe
 
 \end{lstlisting}
-
 
 \begin{quoting}
 Investigue qué es el “SUID bit” (busque en “man chmod”).
@@ -210,7 +201,7 @@ Notese que el bit más significativo tiene el caracter 'd', el cual indica que c
 
 \begin{quoting}
 Loguéese como root en otra Terminal y cree un directorio tipeando “mkdir /undir”.
-\end{quoting}\\
+\end{quoting}
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ su
@@ -234,7 +225,7 @@ drwxr-xr-x 2 root  root    4096 ago 23 22:26 undir
 
 \begin{quoting}
 Haga que cualquier usuario tenga todo tipo de permisos sobre ese directorio.
-\end{quoting}\\
+\end{quoting}
 \begin{lstlisting}[style=Ubuntu]
 root@grios-pc:/home/grios/uade_workplace/ssoo/tp1# chmod o+rwx undir/
 
@@ -247,7 +238,7 @@ drwxr-xrwx 2 root  root    4096 ago 23 22:26 undir
 
 \begin{quoting}
 Deshaga lo que acaba de hacer, y cree el subdirectorio “subdir” dentro de “/undir”
-\end{quoting}\\
+\end{quoting}
 \begin{lstlisting}[style=Ubuntu]
 root@grios-pc:/home/grios/uade_workplace/ssoo/tp1# exit
 exit
@@ -265,7 +256,6 @@ drwxrwxr-x 2 grios grios 4096 ago 23 22:33 subdir
 Investigue como cambiar los permisos de manera recursiva sobre /undir para que todos sus
 archivos, subdirectorios y archivos dentro de los subdirectorios se vean afectados.
 \end{quoting}\\
-
 Para cambiar permisos sobre un directorio de manera recursiva se debe ejecutar 'chmod' con el flag '-R'.
 
 \begin{lstlisting}[style=Ubuntu]
@@ -295,7 +285,6 @@ drwxr-xrwx 3 root  root    4096 ago 23 22:33 undir
 grios@personal-pc:~$ ls -l undir
 total 4
 drwxrwxrwx 2 grios grios 4096 ago 23 22:33 subdir
-
 
 \end{lstlisting}
 
