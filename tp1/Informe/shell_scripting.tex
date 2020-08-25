@@ -2,7 +2,6 @@
 
 \begin{subsection}{Variables de entorno}
 
-
 \begin{quoting}
 ¿Qué es una variable de entorno? ¿Qué significa exportar una variable?¿Cómo se la exporta?
 \end{quoting}
@@ -55,11 +54,315 @@ your_favorite_variable
 \end{quoting}\\
 Lo que ocurrió es que el comando 'source' ejecutó nuestro script y conservo la nueva variable de entorno después de finalizado el script. 
 Lo que hace el comando 'source' es ejecutar el script dentro del mismo proceso que está corriendo la terminal (proceso init), y \textbf{NO} genera otro distinto, es por eso que al finalizar la ejecución del script las variables de entonces se mantienen con el mismo estado que el script modificó.
-
 \end{subsection}
 
 \begin{subsection}{Procesos en primer y segundo plano}
+
+\begin{quoting}
+¿Cómo se ejecutan comandos en segundo plano (background) en Linux?
+\end{quoting}\\
+Ejecutar en segundo plano es ejecutar un comando y que mientras esté corriendo deje disponible la terminal para ejecutar otros comandos. La forma de ejecutar comandos en segundo plano es usando un ampersand (\&) al final la comando que se desea correr en segundo plano.
+
+\begin{quoting}
+¿Cómo hace para conocer qué procesos corren en segundo plano?
+\end{quoting}\\
+Para conocer los procesos que se encuentran corriendo en segundo plano se debe ejecutar el comando 'jobs'.
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ jobs
+[1]  + Running some_process
+
+\end{lstlisting}
+
+\begin{quoting}
+¿Cómo trae un proceso a primer plano nuevamente?
+\end{quoting}\\
+Para poder traernos un proceso, primero se debe obtener el número de proceso ejecutando el comando 'jobs', una vez obtenido el número del proceso se debe ejecutar el comando 'fg'
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ jobs
+[1]  + Running some_process
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ gf %1
+\end{lstlisting}
 \end{subsection}
 
+
+\begin{subsection}{/proc}
+
+\begin{quoting}
+¿Qué información contiene este directorio? Investigue exhaustivamente su contenido.
+\end{quoting}\\
+Según lo explicado por el comando 'man proc': /proc es un comando que nos permite acceder a un pseudo file system que nos provee el kernel del sistema operativo. Decimos que es un pseudo file system porque es virtual, no existe en disco pero sí en memoria. Dentro de este file system se puede encontrar información relacionada con el sistema (entre ellas los procesos que se están ejecutando).
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@grios-pc:~$ /proc   
+
+/proc          
+grios@grios-pc:~$ ls
+1     141   1881  20    2194  2297  248   266   3624  389   6800  7427  820   asound         iomem        net            version
+10    142   1890  2005  2198  2298  249   267   368   39    6801  7492  821   brcm_monitor0  ioports      pagetypeinfo   version_signature
+1000  1426  1896  2081  22    2299  250   269   37    4     6814  7502  8215  buddyinfo      irq          partitions     vmallocinfo
+1097  143   1898  2098  2218  23    251   27    3703  40    6867  7657  825   bus            kallsyms     pressure       vmstat
+11    144   1901  21    2247  2300  2516  28    3704  41    6920  777   8257  cgroups        kcore        sched_debug    zoneinfo
+1101  148   1905  2103  2255  2301  252   29    372   42    6962  778   826   cmdline        keys         schedstat
+1110  149   1922  2104  2264  2304  2521  2922  376   4209  6992  781   827   consoles       key-users    scsi
+1112  15    1927  2107  2266  2346  253   2923  3769  4276  7     782   828   cpuinfo        kmsg         self
+1120  152   1934  2109  2279  2355  2536  296   3770  496   7024  783   8307  crypto         kpagecgroup  slabinfo
+1121  153   1941  2112  2280  2360  254   297   379   510   7152  785   8334  devices        kpagecount   softirqs
+1128  154   1947  2120  2281  237   2541  3     38    5494  7153  786   835   diskstats      kpageflags   stat
+12    156   1951  2137  2282  24    2542  30    380   572   724   793   8424  dma            loadavg      swaps
+1268  16    1952  2147  2284  2421  2553  32    381   584   725   794   880   driver         locks        sys
+136   167   1957  2151  2286  243   2593  33    383   586   7323  7972  883   execdomains    mdstat       sysrq-trigger
+137   17    1961  2161  2289  244   260   336   384   6     736   8     9     fb             meminfo      sysvipc
+138   171   1969  2170  2290  2444  261   34    385   6477  737   8004  919   filesystems    misc         thread-self
+139   1799  1971  2173  2292  245   2626  35    386   6547  7382  813   926   fs             modules      timer_list
+14    18    1979  2182  2294  246   2633  3504  387   6611  7398  815   946   i8k            mounts       tty
+140   187   2     2190  2295  247   2634  36    388   6787  7402  8152  acpi  interrupts     mtrr         uptime
+
+\end{lstlisting}
+
+\begin{quoting}
+¿Qué representan los directorios numéricos?
+\end{quoting}\\
+Los archivos con número representan a procesos en ejecuación, son llamadas pid (process ID).
+
+
+\begin{quoting}
+/proc/net: ¿Qué información contiene este directorio? A medida que envía datos a través de la red
+(por ejemplo al navegar con firefox), investigue qué archivos son modificados y qué representan esos
+valores cambiantes.
+\end{quoting}\\
+Este directorio incluye información de todo lo que refiere a la red. Dentro de él podemos encontrar dispositivos de red, archivos relacionados a tablas de ip, estadisticas de red y sockets, información wireless, etc.
+
+Para ver cómo cambian estos archivos se ejecutó el comando 'cat *' el cual imprimió por estandar output todos los archivo del directorio. Posteriormente se inició firefox y se volvió a ejecutar el comando 'cat *'. Para comparar ambos resultados se hizo un 'diff' y se logró ver que los archivos que cambiaron fueron:
+
+\begin{itemize}
+	\item dev
+	\item fib\_triestat
+	\item netstat
+	\item protocols
+	\item snmp
+	\item sockstat
+	\item softnet\_stat
+	\item tcp
+\end{itemize}
+\end{subsection}
+
+\begin{subsection}{etc/passwd}
+
+\begin{quoting}
+¿Qué información contiene el archivo /etc/passwd?
+\end{quoting}\\
+El archivo /etc/passwd contiene los usuarios del sistema operativo.
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat /etc/passwd
+
+root:x:0:0:root:/root:/bin/bash
+grios:x:1000:1000:grios,,,:/home/grios:/usr/bin/zsh
+test_user:x:1001:1001::/home/grios:/bin/sh
+.
+.
+.
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l /etc/passwd
+-rw-r--r-- 1 root root 2889 ago 23 20:29 /etc/passwd
+\end{lstlisting}
+En la última instrucción ejecutada se puede ver que sólo el usuario root tiene permisos de escritura sobre este archivo, ya que es owner del archivo.
+\end{subsection}
+
+\begin{subsection}{chsh}
+
+\begin{quoting}
+¿Para qué se utiliza el comando chsh?
+\end{quoting}\\
+El objetivo de este comando es cambiar la shell de inició de sesión de un usuario particular. Vamos a ejecutar el comando para mostrar su impacto, pero noten que antes corrimos el comando 'cat /etc/passwd' y nos decía que nuestro usuario 'test\_user' tenía 'sh' como shell de inicio, así que lo cambiaremos a 'bash'
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ sudo chsh -s /bin/bash test_user
+[sudo] password for grios: 
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat /etc/passwd
+
+root:x:0:0:root:/root:/bin/bash
+grios:x:1000:1000:grios,,,:/home/grios:/usr/bin/zsh
+test_user:x:1001:1001::/home/grios:/bin/bash
+.
+.
+.
+
+\end{lstlisting}
+Notese que para cambiar un shell, un usuario sólo puede cambiar su propio shell pero si quisiera cambiarselo a otro debe ejecutar el comando con permisos de superusuario.
+\end{subsection}
+
+\begin{subsection}{SSH}
+
+\begin{quoting}
+Herramienta de logueo y ejecución de comandos remoto. Utiliza diversos algoritmos de
+encripción para proveer seguridad a la comunicación.
+\end{quoting}
+
+\begin{quoting}
+Investigue su uso y como automatizar el logueo de un usuario en una máquina remota (es decir, sin
+requerir el ingreso de password), leer man ssh-keygen y analizar el uso del archivo authorized\_keys.
+\end{quoting}\\
+La forma de acceder remotamente a un servidor sin usar contraseñas es usando claves públicas y privadas, obteniendo y ubicando correctamente las claves nos permitirá garantizar la autenticación a la hora de conectarnos al servidor.
+
+\begin{subsubsection}{Creación de clave privada y pública}
+Para crear este par de claves es necesario correr el comando 'ssh-keygen -b 4096'. Dichas claves se generarán dentro de los archivo
+
+\begin{itemize}
+\item id\_rsa: Contendrá la clave privada (Debe quedarse en nuestro ordenador local)
+\item id\_rsa.pub: Contendrá la clave pública (Debe ser copiada al servidor remoto al que se queremos acceder)
+\end{itemize}
+\end{subsubsection}
+
+\begin{subsubsection}{Ubicación de las claves}
+
+Se debe copiar la clave pública al servidor ejecutando un comando similar a este:
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ scp ~/.ssh/id_rsa.pub user@remotemachine:/home/user/uploaded_key.pub
+\end{lstlisting}
+
+Posteriormente se debe ubicar la clave privada dentro del $HOME/.ssh/authorized\_keys
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ mkdir .ssh
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ chmod 700 .ssh
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ touch .ssh/authorized_keys
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ chmod 600 .ssh/authorized_keys
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ echo 'cat ~/uploaded_key.pub' >> ~/.ssh/authorized_keys
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ rm /home/user/uploaded_key.pub
+\end{lstlisting}
+\end{subsubsection}
+
+\begin{subsubsection}{Configuración de SSH}
+
+Una vez realizado esto se debe editar el file '/etc/ssh/sshd\_config' agregando en la instrucción 'PasswordAuthentication no' y así poder deshabilitar el acceso a ssh con contraseña, lo haremos así:
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config 
+\end{lstlisting}
+
+Ahora sólo resta ingresar ingresar al servidor remoto sin contraseña
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ssh grios@your_favorite_server
+\end{lstlisting}
+\end{subsubsection}
+\end{subsection}
+
+\begin{subsection}{awk}
+\begin{quoting}
+Procesamiento de textos (awk): awk es un lenguaje de programación destinado al procesamiento de textos
+\end{quoting}
+\begin{quoting}
+¿Qué realizan las siguientes operaciones?:
+\end{quoting}
+
+\begin{itemize}
+
+\item ls -l | awk '{print $6}'
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls -l | awk '{print $6}'
+
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+ago
+
+\end{lstlisting}
+Lo que hace este comando es imprimir por standard output la sexta 'columna0 devuelta por la instrucción 'ls -l'. Por default, awk, splitea su input con tabs.
+
+\item cat /etc/passwd | awk 'BEGIN{FS=":"}{print $1$7}'
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat /etc/passwd | awk 'BEGIN{FS=":"}{print $1$7}'
+root/bin/bash
+daemon/usr/sbin/nologin
+bin/usr/sbin/nologin
+sys/usr/sbin/nologin
+sync/bin/sync
+games/usr/sbin/nologin
+man/usr/sbin/nologin
+lp/usr/sbin/nologin
+mail/usr/sbin/nologin
+news/usr/sbin/nologin
+uucp/usr/sbin/nologin
+proxy/usr/sbin/nologin
+www-data/usr/sbin/nologin
+backup/usr/sbin/nologin
+list/usr/sbin/nologin
+irc/usr/sbin/nologin
+gnats/usr/sbin/nologin
+nobody/usr/sbin/nologin
+systemd-network/usr/sbin/nologin
+systemd-resolve/usr/sbin/nologin
+systemd-timesync/usr/sbin/nologin
+messagebus/usr/sbin/nologin
+syslog/usr/sbin/nologin
+_apt/usr/sbin/nologin
+tss/bin/false
+uuidd/usr/sbin/nologin
+tcpdump/usr/sbin/nologin
+avahi-autoipd/usr/sbin/nologin
+usbmux/usr/sbin/nologin
+rtkit/usr/sbin/nologin
+dnsmasq/usr/sbin/nologin
+cups-pk-helper/usr/sbin/nologin
+speech-dispatcher/bin/false
+avahi/usr/sbin/nologin
+kernoops/usr/sbin/nologin
+saned/usr/sbin/nologin
+nm-openvpn/usr/sbin/nologin
+hplip/bin/false
+whoopsie/bin/false
+colord/usr/sbin/nologin
+geoclue/usr/sbin/nologin
+pulse/usr/sbin/nologin
+gnome-initial-setup/bin/false
+gdm/bin/false
+grios/usr/bin/zsh
+systemd-coredump/usr/sbin/nologin
+gitlog/usr/sbin/nologin
+gitdaemon/usr/sbin/nologin
+test_user/bin/bash
+
+\end{lstlisting}
+Este comando lo que nos permite servir como input al pwd el contenido del file /etc/passwd. Una vez hecho esto pwd splitteará el input en base a ':' y luego imprimirá por stardard output la columna 1 y 7 correspondientes al usuario y al shell respectivamente.
+\end{itemize}
+
+\end{subsection}
 
 \end{section}
