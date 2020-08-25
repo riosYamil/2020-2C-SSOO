@@ -230,7 +230,7 @@ Se debe copiar la clave pública al servidor ejecutando un comando similar a est
 grios@personal-pc:~$ scp ~/.ssh/id_rsa.pub user@remotemachine:/home/user/uploaded_key.pub
 \end{lstlisting}
 
-Posteriormente se debe ubicar la clave privada dentro del $HOME/.ssh/authorized\_keys
+Posteriormente se debe ubicar la clave privada dentro del \$HOME/.ssh/authorized\_keys
 
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
@@ -272,14 +272,15 @@ grios@personal-pc:~$ ssh grios@your_favorite_server
 \begin{subsection}{awk}
 \begin{quoting}
 Procesamiento de textos (awk): awk es un lenguaje de programación destinado al procesamiento de textos
-\end{quoting}
+\end{quoting}\\
+
 \begin{quoting}
 ¿Qué realizan las siguientes operaciones?:
 \end{quoting}
 
 \begin{itemize}
 
-\item ls -l | awk '{print $6}'
+\item 
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ ls -l | awk '{print $6}'
@@ -305,7 +306,7 @@ ago
 \end{lstlisting}
 Lo que hace este comando es imprimir por standard output la sexta 'columna0 devuelta por la instrucción 'ls -l'. Por default, awk, splitea su input con tabs.
 
-\item cat /etc/passwd | awk 'BEGIN{FS=":"}{print $1$7}'
+\item
 \begin{lstlisting}[style=Ubuntu]
 ~/uade_workplace/ssoo/tp1
 grios@personal-pc:~$ cat /etc/passwd | awk 'BEGIN{FS=":"}{print $1$7}'
