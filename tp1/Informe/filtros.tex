@@ -1,2 +1,620 @@
 \begin{section}{Filtros}
+
+\begin{subsection}{more, less y cat}
+\begin{quoting}
+¿Cuál es la diferencia de los comandos more, less y cat? Cree un archivo de texto tipeando “ps –fea >
+texto” y visualícelo con los distintos comandos.
+\end{quoting}\\
+
+\begin{itemize}
+\item El comando more muestra el contenido de un archivo y queda a la espera de que se presione la tecla <espacio> para avanzar a la página siguiente, no posee la funcionalidad de ir para atrás. Se puede volver al prompt presionando el comando 'q'.
+
+\item El comando less es tiene los mismos features que el comando more, con la diferencia que puede desplazarse hacía página anterior o siguiente con al teclas RePag y AvPag. Se puede volver al prompt presionando el comando 'q'.
+
+\item El comando cat imprime, por standard input, el contenido de un archivo y habilita nuevamente el prompt a la espera de la próxima linea de comandos.
+\end{itemize}
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ps -fea > texto
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ more texto
+
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 ago24 ?        00:00:31 /sbin/init splash
+root           2       0  0 ago24 ?        00:00:00 [kthreadd]
+root           3       2  0 ago24 ?        00:00:00 [rcu_gp]
+root           4       2  0 ago24 ?        00:00:00 [rcu_par_gp]
+root           6       2  0 ago24 ?        00:00:00 [kworker/0:0H-kblockd]
+root           8       2  0 ago24 ?        00:00:00 [mm_percpu_wq]
+root           9       2  0 ago24 ?        00:00:00 [ksoftirqd/0]
+root          10       2  0 ago24 ?        00:00:25 [rcu_sched]
+root          11       2  0 ago24 ?        00:00:00 [migration/0]
+root          12       2  0 ago24 ?        00:00:00 [idle_inject/0]
+root          14       2  0 ago24 ?        00:00:00 [cpuhp/0]
+root          15       2  0 ago24 ?        00:00:00 [cpuhp/1]
+root          16       2  0 ago24 ?        00:00:00 [idle_inject/1]
+root          17       2  0 ago24 ?        00:00:00 [migration/1]
+root          18       2  0 ago24 ?        00:00:00 [ksoftirqd/1]
+root          21       2  0 ago24 ?        00:00:00 [cpuhp/2]
+root          22       2  0 ago24 ?        00:00:00 [idle_inject/2]
+root          23       2  0 ago24 ?        00:00:00 [migration/2]
+root          24       2  0 ago24 ?        00:00:01 [ksoftirqd/2]
+root          27       2  0 ago24 ?        00:00:00 [cpuhp/3]
+root          28       2  0 ago24 ?        00:00:00 [idle_inject/3]
+root          29       2  0 ago24 ?        00:00:00 [migration/3]
+root          30       2  0 ago24 ?        00:00:02 [ksoftirqd/3]
+root          33       2  0 ago24 ?        00:00:00 [kdevtmpfs]
+root          34       2  0 ago24 ?        00:00:00 [netns]
+root          35       2  0 ago24 ?        00:00:00 [rcu_tasks_kthre]
+root          36       2  0 ago24 ?        00:00:00 [kauditd]
+root          37       2  0 ago24 ?        00:00:00 [khungtaskd]
+root          38       2  0 ago24 ?        00:00:00 [oom_reaper]
+root          39       2  0 ago24 ?        00:00:00 [writeback]
+root          40       2  0 ago24 ?        00:00:00 [kcompactd0]
+root          41       2  0 ago24 ?        00:00:00 [ksmd]
+root          42       2  0 ago24 ?        00:00:00 [khugepaged]
+root         136       2  0 ago24 ?        00:00:00 [kintegrityd]
+root         137       2  0 ago24 ?        00:00:00 [kblockd]
+root         138       2  0 ago24 ?        00:00:00 [blkcg_punt_bio]
+--More--(10%)
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ less texto
+
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 ago24 ?        00:00:31 /sbin/init splash
+root           2       0  0 ago24 ?        00:00:00 [kthreadd]
+root           3       2  0 ago24 ?        00:00:00 [rcu_gp]
+root           4       2  0 ago24 ?        00:00:00 [rcu_par_gp]
+root           6       2  0 ago24 ?        00:00:00 [kworker/0:0H-kblockd]
+root           8       2  0 ago24 ?        00:00:00 [mm_percpu_wq]
+root           9       2  0 ago24 ?        00:00:00 [ksoftirqd/0]
+root          10       2  0 ago24 ?        00:00:25 [rcu_sched]
+root          11       2  0 ago24 ?        00:00:00 [migration/0]
+root          12       2  0 ago24 ?        00:00:00 [idle_inject/0]
+root          14       2  0 ago24 ?        00:00:00 [cpuhp/0]
+root          15       2  0 ago24 ?        00:00:00 [cpuhp/1]
+root          16       2  0 ago24 ?        00:00:00 [idle_inject/1]
+root          17       2  0 ago24 ?        00:00:00 [migration/1]
+root          18       2  0 ago24 ?        00:00:00 [ksoftirqd/1]
+root          21       2  0 ago24 ?        00:00:00 [cpuhp/2]
+root          22       2  0 ago24 ?        00:00:00 [idle_inject/2]
+root          23       2  0 ago24 ?        00:00:00 [migration/2]
+root          24       2  0 ago24 ?        00:00:01 [ksoftirqd/2]
+root          27       2  0 ago24 ?        00:00:00 [cpuhp/3]
+root          28       2  0 ago24 ?        00:00:00 [idle_inject/3]
+root          29       2  0 ago24 ?        00:00:00 [migration/3]
+root          30       2  0 ago24 ?        00:00:02 [ksoftirqd/3]
+root          33       2  0 ago24 ?        00:00:00 [kdevtmpfs]
+root          34       2  0 ago24 ?        00:00:00 [netns]
+root          35       2  0 ago24 ?        00:00:00 [rcu_tasks_kthre]
+root          36       2  0 ago24 ?        00:00:00 [kauditd]
+root          37       2  0 ago24 ?        00:00:00 [khungtaskd]
+root          38       2  0 ago24 ?        00:00:00 [oom_reaper]
+root          39       2  0 ago24 ?        00:00:00 [writeback]
+root          40       2  0 ago24 ?        00:00:00 [kcompactd0]
+root          41       2  0 ago24 ?        00:00:00 [ksmd]
+root          42       2  0 ago24 ?        00:00:00 [khugepaged]
+root         136       2  0 ago24 ?        00:00:00 [kintegrityd]
+root         137       2  0 ago24 ?        00:00:00 [kblockd]
+root         138       2  0 ago24 ?        00:00:00 [blkcg_punt_bio]
+texto
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ cat texto
+
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 ago24 ?        00:00:31 /sbin/init splash
+root           2       0  0 ago24 ?        00:00:00 [kthreadd]
+root           3       2  0 ago24 ?        00:00:00 [rcu_gp]
+root           4       2  0 ago24 ?        00:00:00 [rcu_par_gp]
+root           6       2  0 ago24 ?        00:00:00 [kworker/0:0H-kblockd]
+root           8       2  0 ago24 ?        00:00:00 [mm_percpu_wq]
+root           9       2  0 ago24 ?        00:00:00 [ksoftirqd/0]
+root          10       2  0 ago24 ?        00:00:25 [rcu_sched]
+root          11       2  0 ago24 ?        00:00:00 [migration/0]
+root          12       2  0 ago24 ?        00:00:00 [idle_inject/0]
+root          14       2  0 ago24 ?        00:00:00 [cpuhp/0]
+root          15       2  0 ago24 ?        00:00:00 [cpuhp/1]
+root          16       2  0 ago24 ?        00:00:00 [idle_inject/1]
+root          17       2  0 ago24 ?        00:00:00 [migration/1]
+root          18       2  0 ago24 ?        00:00:00 [ksoftirqd/1]
+root          21       2  0 ago24 ?        00:00:00 [cpuhp/2]
+root          22       2  0 ago24 ?        00:00:00 [idle_inject/2]
+root          23       2  0 ago24 ?        00:00:00 [migration/2]
+root          24       2  0 ago24 ?        00:00:01 [ksoftirqd/2]
+root          27       2  0 ago24 ?        00:00:00 [cpuhp/3]
+root          28       2  0 ago24 ?        00:00:00 [idle_inject/3]
+root          29       2  0 ago24 ?        00:00:00 [migration/3]
+root          30       2  0 ago24 ?        00:00:02 [ksoftirqd/3]
+root          33       2  0 ago24 ?        00:00:00 [kdevtmpfs]
+root          34       2  0 ago24 ?        00:00:00 [netns]
+root          35       2  0 ago24 ?        00:00:00 [rcu_tasks_kthre]
+root          36       2  0 ago24 ?        00:00:00 [kauditd]
+root          37       2  0 ago24 ?        00:00:00 [khungtaskd]
+root          38       2  0 ago24 ?        00:00:00 [oom_reaper]
+root          39       2  0 ago24 ?        00:00:00 [writeback]
+root          40       2  0 ago24 ?        00:00:00 [kcompactd0]
+root          41       2  0 ago24 ?        00:00:00 [ksmd]
+root          42       2  0 ago24 ?        00:00:00 [khugepaged]
+root         136       2  0 ago24 ?        00:00:00 [kintegrityd]
+root         137       2  0 ago24 ?        00:00:00 [kblockd]
+root         138       2  0 ago24 ?        00:00:00 [blkcg_punt_bio]
+root         139       2  0 ago24 ?        00:00:00 [tpm_dev_wq]
+root         140       2  0 ago24 ?        00:00:00 [ata_sff]
+root         141       2  0 ago24 ?        00:00:00 [md]
+root         142       2  0 ago24 ?        00:00:00 [edac-poller]
+root         143       2  0 ago24 ?        00:00:00 [devfreq_wq]
+root         144       2  0 ago24 ?        00:00:00 [watchdogd]
+root         148       2  0 ago24 ?        00:00:02 [kswapd0]
+root         149       2  0 ago24 ?        00:00:00 [ecryptfs-kthrea]
+root         152       2  0 ago24 ?        00:00:00 [kthrotld]
+root         153       2  0 ago24 ?        00:00:00 [acpi_thermal_pm]
+root         154       2  0 ago24 ?        00:00:00 [vfio-irqfd-clea]
+root         156       2  0 ago24 ?        00:00:00 [ipv6_addrconf]
+root         167       2  0 ago24 ?        00:00:00 [kstrp]
+root         171       2  0 ago24 ?        00:00:00 [kworker/u9:0-hci0]
+root         187       2  0 ago24 ?        00:00:00 [charger_manager]
+root         243       2  0 ago24 ?        00:00:00 [scsi_eh_0]
+root         244       2  0 ago24 ?        00:00:00 [scsi_tmf_0]
+root         245       2  0 ago24 ?        00:00:00 [scsi_eh_1]
+root         246       2  0 ago24 ?        00:00:00 [scsi_tmf_1]
+root         247       2  0 ago24 ?        00:00:00 [scsi_eh_2]
+root         248       2  0 ago24 ?        00:00:00 [scsi_tmf_2]
+root         249       2  0 ago24 ?        00:00:00 [scsi_eh_3]
+root         250       2  0 ago24 ?        00:00:00 [scsi_tmf_3]
+root         251       2  0 ago24 ?        00:00:00 [scsi_eh_4]
+root         252       2  0 ago24 ?        00:00:00 [scsi_tmf_4]
+root         253       2  0 ago24 ?        00:00:00 [scsi_eh_5]
+root         254       2  0 ago24 ?        00:00:00 [scsi_tmf_5]
+root         260       2  0 ago24 ?        00:00:01 [kworker/3:1H-events_highpri]
+root         269       2  0 ago24 ?        00:00:02 [kworker/1:1H-events_highpri]
+root         296       2  0 ago24 ?        00:00:00 [jbd2/sda6-8]
+root         297       2  0 ago24 ?        00:00:00 [ext4-rsv-conver]
+root         336       1  0 ago24 ?        00:00:02 /lib/systemd/systemd-journald
+root         368       2  0 ago24 ?        00:00:00 [loop0]
+root         372       2  0 ago24 ?        00:00:00 [loop1]
+root         376       2  0 ago24 ?        00:00:00 [loop2]
+root         379       2  0 ago24 ?        00:00:00 [loop3]
+root         380       2  0 ago24 ?        00:00:00 [loop4]
+root         381       2  0 ago24 ?        00:00:00 [loop5]
+root         383       1  0 ago24 ?        00:00:05 /lib/systemd/systemd-udevd
+root         384       2  0 ago24 ?        00:00:00 [loop6]
+root         385       2  0 ago24 ?        00:00:00 [loop7]
+root         386       2  0 ago24 ?        00:00:00 [loop8]
+root         387       2  0 ago24 ?        00:00:00 [loop9]
+root         388       2  0 ago24 ?        00:00:00 [loop10]
+root         389       2  0 ago24 ?        00:00:00 [loop11]
+root         496       2  0 ago24 ?        00:00:00 [cryptd]
+root         510       2  0 ago24 ?        00:00:00 [cfg80211]
+root         572       2  0 ago24 ?        00:00:00 [wl_event_handle]
+root         584       2  0 ago24 ?        00:00:00 [kmemstick]
+root         724       2  0 ago24 ?        00:00:01 [jbd2/sda7-8]
+root         725       2  0 ago24 ?        00:00:00 [ext4-rsv-conver]
+systemd+     736       1  0 ago24 ?        00:00:06 /lib/systemd/systemd-resolved
+systemd+     737       1  0 ago24 ?        00:00:00 /lib/systemd/systemd-timesyncd
+root         777       1  0 ago24 ?        00:00:00 /usr/lib/accountsservice/accounts-daemon
+root         778       1  0 ago24 ?        00:00:05 /usr/sbin/acpid
+avahi        781       1  0 ago24 ?        00:00:00 avahi-daemon: running [grios-pc.local]
+root         782       1  0 ago24 ?        00:00:00 /usr/lib/bluetooth/bluetoothd
+root         783       1  0 ago24 ?        00:00:00 /usr/sbin/cron -f
+message+     785       1  0 ago24 ?        00:00:07 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root         786       1  0 ago24 ?        00:00:13 /usr/sbin/NetworkManager --no-daemon
+root         793       1  0 ago24 ?        00:00:01 /usr/sbin/irqbalance --foreground
+root         794       1  0 ago24 ?        00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root         813       1  0 ago24 ?        00:00:03 /usr/lib/policykit-1/polkitd --no-debug
+syslog       815       1  0 ago24 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+root         820       1  0 ago24 ?        00:00:07 /usr/lib/snapd/snapd
+root         821       1  0 ago24 ?        00:00:00 /usr/libexec/switcheroo-control
+root         825       1  0 ago24 ?        00:00:02 /lib/systemd/systemd-logind
+root         826       1  0 ago24 ?        00:00:01 /usr/sbin/thermald --no-daemon --dbus-enable
+root         827       1  0 ago24 ?        00:00:04 /usr/lib/udisks2/udisksd
+root         828       1  0 ago24 ?        00:00:00 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+avahi        835     781  0 ago24 ?        00:00:00 avahi-daemon: chroot helper
+colord       880       1  0 ago24 ?        00:00:00 /usr/libexec/colord
+root         883       1  0 ago24 ?        00:00:00 /usr/sbin/ModemManager --filter-policy=strict
+root         919       1  0 ago24 ?        00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         926       1  0 ago24 ?        00:00:05 /usr/bin/containerd
+root         946       1  0 ago24 ?        00:00:00 /usr/sbin/gdm3
+root        1000       1  0 ago24 ?        00:00:01 /usr/sbin/apache2 -k start
+root        1097       1  0 ago24 ?        00:00:08 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+whoopsie    1101       1  0 ago24 ?        00:00:00 /usr/bin/whoopsie -f
+kernoops    1110       1  0 ago24 ?        00:00:01 /usr/sbin/kerneloops --test
+kernoops    1112       1  0 ago24 ?        00:00:01 /usr/sbin/kerneloops
+root        1120       2  0 ago24 ?        00:00:00 [iprt-VBoxWQueue]
+root        1121       2  0 ago24 ?        00:00:00 [iprt-VBoxTscThr]
+rtkit       1128       1  0 ago24 ?        00:00:00 /usr/libexec/rtkit-daemon
+root        1268       1  0 ago24 ?        00:00:02 /usr/lib/upower/upowerd
+root        1426       2  0 ago24 ?        00:00:00 bpfilter_umh
+root        1799     946  0 ago24 ?        00:00:00 gdm-session-worker [pam/gdm-password]
+grios       1881       1  0 ago24 ?        00:00:01 /lib/systemd/systemd --user
+grios       1890    1881  0 ago24 ?        00:00:00 (sd-pam)
+grios       1896    1881  0 ago24 ?        00:01:15 /usr/bin/pulseaudio --daemonize=no --log-target=journal
+grios       1898    1881  0 ago24 ?        00:00:00 /usr/libexec/tracker-miner-fs
+grios       1901    1881  0 ago24 ?        00:00:04 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+grios       1905       1  0 ago24 ?        00:00:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+grios       1922    1881  0 ago24 ?        00:00:00 /usr/libexec/gvfsd
+grios       1927    1881  0 ago24 ?        00:00:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+grios       1934    1881  0 ago24 ?        00:00:00 /usr/libexec/gvfs-udisks2-volume-monitor
+grios       1941    1881  0 ago24 ?        00:00:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+grios       1947    1881  0 ago24 ?        00:00:00 /usr/libexec/gvfs-mtp-volume-monitor
+grios       1951    1881  0 ago24 ?        00:00:01 /usr/libexec/gvfs-afc-volume-monitor
+root        1952       2  0 ago24 ?        00:00:00 [krfcommd]
+grios       1957    1881  0 ago24 ?        00:00:00 /usr/libexec/gvfs-goa-volume-monitor
+grios       1961    1881  0 ago24 ?        00:00:00 /usr/libexec/goa-daemon
+grios       1969    1881  0 ago24 ?        00:00:00 /usr/libexec/goa-identity-service
+grios       1971    1799  0 ago24 tty2     00:00:00 /usr/lib/gdm3/gdm-x-session --run-script env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --systemd --session=ubuntu
+grios       1979    1971  1 ago24 tty2     00:18:41 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -background none -noreset -keeptty -verbose 3
+grios       2005    1971  0 ago24 tty2     00:00:00 /usr/libexec/gnome-session-binary --systemd --systemd --session=ubuntu
+grios       2081    2005  0 ago24 ?        00:00:00 /usr/bin/ssh-agent /usr/bin/im-launch env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --systemd --session=ubuntu
+grios       2098       1  0 ago24 ?        00:02:16 /usr/bin/ibus-daemon --daemonize --xim
+grios       2103    2098  0 ago24 ?        00:00:00 /usr/libexec/ibus-memconf
+grios       2104    2098  0 ago24 ?        00:00:01 /usr/libexec/ibus-ui-gtk3
+grios       2107    2098  0 ago24 ?        00:00:19 /usr/libexec/ibus-extension-gtk3
+grios       2109       1  0 ago24 ?        00:00:01 /usr/libexec/ibus-x11 --kill-daemon
+grios       2112    1881  0 ago24 ?        00:00:00 /usr/libexec/ibus-portal
+grios       2120    1881  0 ago24 ?        00:00:00 /usr/libexec/at-spi-bus-launcher
+grios       2137    2120  0 ago24 ?        00:00:02 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+grios       2147    1881  0 ago24 ?        00:00:10 /usr/libexec/at-spi2-registryd --use-gnome-session
+grios       2151    1881  0 ago24 ?        00:00:01 /usr/libexec/xdg-desktop-portal
+grios       2161    1881  0 ago24 ?        00:00:00 /usr/libexec/gnome-session-ctl --monitor
+grios       2170    1881  0 ago24 ?        00:00:00 /usr/libexec/xdg-document-portal
+grios       2173    1881  0 ago24 ?        00:00:00 /usr/libexec/xdg-permission-store
+grios       2182    1881  0 ago24 ?        00:00:03 /usr/libexec/xdg-desktop-portal-gtk
+grios       2190    1881  0 ago24 ?        00:00:00 /usr/libexec/dconf-service
+grios       2194    2098  0 ago24 ?        00:00:38 /usr/libexec/ibus-engine-simple
+grios       2198    1881  0 ago24 ?        00:00:00 /usr/libexec/gnome-session-binary --systemd-service --session=ubuntu
+grios       2218    1881  1 ago24 ?        00:21:08 /usr/bin/gnome-shell
+grios       2247    1881  0 ago24 ?        00:00:00 /usr/libexec/gnome-shell-calendar-server
+grios       2255    1881  0 ago24 ?        00:00:00 /usr/libexec/evolution-source-registry
+grios       2264    1881  0 ago24 ?        00:00:00 /usr/libexec/evolution-calendar-factory
+grios       2266    1881  0 ago24 ?        00:00:00 /usr/bin/gjs /usr/share/gnome-shell/org.gnome.Shell.Notifications
+grios       2279    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-a11y-settings
+grios       2280    1881  0 ago24 ?        00:00:01 /usr/libexec/gsd-color
+grios       2281    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-datetime
+grios       2282    1881  0 ago24 ?        00:00:01 /usr/libexec/gsd-housekeeping
+grios       2284    1881  0 ago24 ?        00:00:01 /usr/libexec/gsd-keyboard
+grios       2286    1881  0 ago24 ?        00:00:02 /usr/libexec/gsd-media-keys
+grios       2289    1881  0 ago24 ?        00:00:01 /usr/libexec/gsd-power
+grios       2290    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-print-notifications
+grios       2292    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-rfkill
+grios       2294    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-screensaver-proxy
+grios       2295    1881  0 ago24 ?        00:00:02 /usr/libexec/gsd-sharing
+grios       2297    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-smartcard
+grios       2298    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-sound
+grios       2299    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-usb-protection
+grios       2300    1881  0 ago24 ?        00:00:01 /usr/libexec/gsd-wacom
+grios       2301    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-wwan
+grios       2304    1881  0 ago24 ?        00:00:01 /usr/libexec/gsd-xsettings
+grios       2346    1881  0 ago24 ?        00:00:00 /usr/libexec/gsd-printer
+grios       2355    2198  0 ago24 ?        00:00:00 /usr/libexec/gsd-disk-utility-notify
+grios       2360    2198  0 ago24 ?        00:00:01 /usr/libexec/evolution-data-server/evolution-alarm-notify
+grios       2421    1922  0 ago24 ?        00:00:00 /usr/libexec/gvfsd-trash --spawner :1.3 /org/gtk/gvfs/exec_spaw/0
+grios       2444    1881  0 ago24 ?        00:00:00 /usr/libexec/evolution-addressbook-factory
+grios       2516    2198  0 ago24 ?        00:01:13 ./jetbrains-toolbox --minimize
+grios       2521    1881  0 ago24 ?        00:00:05 /home/grios/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
+grios       2541    2516  0 ago24 ?        00:00:00 /tmp/.mount_jetbraOOyS8q/jetbrains-toolbox-helper --type=zygote --no-zygote-sandbox --no-sandbox --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --resources-dir-path=/tmp/.mount_jetbraOOyS8q --lang=en-US
+grios       2542    2516  0 ago24 ?        00:00:00 /tmp/.mount_jetbraOOyS8q/jetbrains-toolbox-helper --type=zygote --no-sandbox --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --resources-dir-path=/tmp/.mount_jetbraOOyS8q --lang=en-US
+grios       2593    2541  0 ago24 ?        00:00:02 /tmp/.mount_jetbraOOyS8q/jetbrains-toolbox-helper --type=gpu-process --field-trial-handle=15078284511005009524,13708700410527879625,131072 --enable-features=CastMediaRouteProvider --disable-features=OutOfBlinkCors --no-sandbox --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --resources-dir-path=/tmp/.mount_jetbraOOyS8q --lang=en-US --gpu-preferences=MAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABgAAAAAAAQAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA= --use-gl=swiftshader-webgl --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --shared-files
+grios       2626    2516  0 ago24 ?        00:00:00 /tmp/.mount_jetbraOOyS8q/jetbrains-toolbox-helper --type=utility --field-trial-handle=15078284511005009524,13708700410527879625,131072 --enable-features=CastMediaRouteProvider --disable-features=OutOfBlinkCors --lang=en-US --service-sandbox-type=network --no-sandbox --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --resources-dir-path=/tmp/.mount_jetbraOOyS8q --lang=en-US --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --shared-files=v8_snapshot_data:100
+grios       2633    2542  0 ago24 ?        00:00:00 /tmp/.mount_jetbraOOyS8q/jetbrains-toolbox-helper --type=renderer --no-sandbox --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --field-trial-handle=15078284511005009524,13708700410527879625,131072 --enable-features=CastMediaRouteProvider --disable-features=OutOfBlinkCors --disable-gpu-compositing --lang=en-US --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --resources-dir-path=/tmp/.mount_jetbraOOyS8q --disable-extensions --disable-plugins --uncaught-exception-stack-size=16 --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=5 --no-v8-untrusted-code-mitigations --shared-files=v8_snapshot_data:100
+grios       2634    2542  0 ago24 ?        00:00:08 /tmp/.mount_jetbraOOyS8q/jetbrains-toolbox-helper --type=renderer --no-sandbox --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --field-trial-handle=15078284511005009524,13708700410527879625,131072 --enable-features=CastMediaRouteProvider --disable-features=OutOfBlinkCors --disable-gpu-compositing --lang=en-US --log-file=/home/grios/.local/share/JetBrains/Toolbox/logs/toolbox-ui.log --resources-dir-path=/tmp/.mount_jetbraOOyS8q --disable-extensions --disable-plugins --uncaught-exception-stack-size=16 --num-raster-threads=2 --enable-main-frame-before-activation --renderer-client-id=4 --no-v8-untrusted-code-mitigations --shared-files=v8_snapshot_data:100
+grios       2922    1881  0 ago24 ?        00:00:00 /usr/libexec/gvfsd-metadata
+grios       2923    2198  0 ago24 ?        00:00:01 update-notifier
+www-data    3703    1000  0 00:31 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data    3704    1000  0 00:31 ?        00:00:00 /usr/sbin/apache2 -k start
+root        3769       1  0 00:31 ?        00:00:00 /usr/sbin/cupsd -l
+root        3770       1  0 00:31 ?        00:00:00 /usr/sbin/cups-browsed
+root        8569       2  0 01:40 ?        00:00:02 [kworker/3:2H-events_highpri]
+root       10264       2  0 02:10 ?        00:00:00 [kworker/2:0H-events_highpri]
+grios      14205    1905  0 03:10 ?        00:00:00 /usr/bin/ssh-agent -D -a /run/user/1000/keyring/.ssh
+root       15100       2  0 03:16 ?        00:00:00 [kworker/2:2H-events_highpri]
+root       15349       2  0 03:18 ?        00:00:00 [kworker/1:2H-events_highpri]
+root       15814       2  0 04:51 ?        00:00:00 [kworker/u9:1-hci0]
+grios      21423    1881  0 19:11 ?        00:00:17 /usr/libexec/gnome-terminal-server
+grios      21433   21423  0 19:11 pts/0    00:00:01 zsh
+grios      21564    1881  0 19:11 ?        00:00:00 /usr/libexec/evinced
+grios      21896    1881  0 19:14 ?        00:00:05 /usr/bin/nautilus --gapplication-service
+grios      21958    1881  0 19:14 ?        00:01:11 evince /home/grios/uade_workplace/uade_ssoo/tp1/enunciado.pdf
+root       22421       2  0 19:31 ?        00:00:00 [kworker/0:2H-kblockd]
+root       22812       2  0 19:41 ?        00:00:01 [kworker/0:2-events]
+root       23117       2  0 21:10 ?        00:00:00 [irq/30-mei_me]
+root       23222       2  0 21:10 ?        00:00:01 [kworker/3:1-events]
+grios      23630   21433  0 21:18 pts/0    00:00:00 make all
+grios      23631   23630  0 21:18 pts/0    00:00:10 pdflatex main.tex
+grios      23652   23631  0 21:19 pts/0    00:00:00 sh -c vi +115485075 'filtros.tex'
+grios      23653   23652  0 21:19 pts/0    00:00:00 vi +115485075 filtros.tex
+root       24805       2  0 21:34 ?        00:00:01 [kworker/2:1-events]
+root       24816       2  0 21:42 ?        00:00:01 [kworker/u8:0+events_unbound]
+root       24885       2  0 21:46 ?        00:00:01 [kworker/0:1-events]
+root       24893       2  0 21:46 ?        00:00:00 [kworker/1:7-events]
+grios      24916    1881  5 21:46 ?        00:01:52 /usr/lib/firefox/firefox -new-window
+grios      24969   24916  0 21:46 ?        00:00:05 /usr/lib/firefox/firefox -contentproc -childID 1 -isForBrowser -prefsLen 1 -prefMapSize 221170 -parentBuildID 20200720193547 -appdir /usr/lib/firefox/browser 24916 true tab
+grios      25021   24916  0 21:46 ?        00:00:02 /usr/lib/firefox/firefox -contentproc -childID 2 -isForBrowser -prefsLen 6382 -prefMapSize 221170 -parentBuildID 20200720193547 -appdir /usr/lib/firefox/browser 24916 true tab
+grios      25066   24916  5 21:46 ?        00:01:54 /usr/lib/firefox/firefox -contentproc -childID 3 -isForBrowser -prefsLen 7218 -prefMapSize 221170 -parentBuildID 20200720193547 -appdir /usr/lib/firefox/browser 24916 true tab
+root       25516       2  0 21:51 ?        00:00:01 [kworker/u8:2-events_power_efficient]
+grios      25860    1881  0 21:56 ?        00:00:00 /usr/bin/gnome-calendar --gapplication-service
+grios      25864    1881  0 21:56 ?        00:00:00 /usr/bin/seahorse --gapplication-service
+grios      25923    1881  3 21:56 ?        00:00:51 /snap/sublime-text/85/opt/sublime_text/sublime_text
+root       25963       2  0 21:56 ?        00:00:00 [kworker/1:0-events]
+grios      25976   25923  0 21:56 ?        00:00:04 /snap/sublime-text/85/opt/sublime_text/plugin_host 25923 --auto-shell-env
+root       26020       2  0 21:56 ?        00:00:00 [kworker/2:2-cgroup_destroy]
+grios      26717   24916  0 22:11 ?        00:00:06 /usr/lib/firefox/firefox -contentproc -childID 6 -isForBrowser -prefsLen 7533 -prefMapSize 221170 -parentBuildID 20200720193547 -appdir /usr/lib/firefox/browser 24916 true tab
+root       26753       2  0 22:12 ?        00:00:00 [kworker/3:2-events]
+root       26764       2  0 22:13 ?        00:00:00 [kworker/u8:3-i915]
+grios      26765   24916  0 22:13 ?        00:00:00 /usr/lib/firefox/firefox -contentproc -childID 7 -isForBrowser -prefsLen 7533 -prefMapSize 221170 -parentBuildID 20200720193547 -appdir /usr/lib/firefox/browser 24916 true tab
+root       26840       2  0 22:20 ?        00:00:00 [kworker/u8:1-events_unbound]
+grios      26998   21433  0 22:23 pts/0    00:00:00 ps -fea
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ 
+\end{lstlisting}
+
+\begin{quoting}
+Investigue como buscar cadenas de texto cuando se visualiza un archivo con less. ¿Y cómo se hace
+para repetir la búsqueda? ¿Y para repetir la búsqueda hacia atrás? Esto le servirá cuando lea páginas del
+man! (ya que se leen mediante el less).
+\end{quoting}\\
+Para buscar una cadena usando less hay que presiones / y posteriormente escribir la cadena de texto a buscar, una vez integresado el texto a buscar se puede hacer efectiva la busqeuda presionando ENTER las veces que queramos. 
+Para realizar una nueva busqueda es necesario escribir otra consulta escribiendo / y luego la nueva cadena de texto a buscar.
+Una vez llegados al fin del documento se puede realizar busquedas hacía atras, esto se puede hacer presionando N (mayuscula). Obviamente la palabra a buscar se puede sobreescribir usando la /.
+\end{subsection}
+
+\begin{subsection}{tail y head}
+\begin{quoting}
+¿Cuál es la diferencia entre tail y head?. ¿Qué hace la opción –f del comando tail?
+\end{quoting}\\
+
+Los comandos tail y head nos permiten ver de manera parcial un archivo. La diferencia es que tail muestra las últimas lineas y heade muestra las primeras linea.
+Por default, ambos comandos, muestran sólo 10 líneas del archivo y además lo hacen por standard input.
+
+El comando 'tail -f texto' muestra las últimas 10 líneas del archivo en tiempo real, es decir, si ese archivo estuviera siendo escrito durante la ejecución del archivo, nosotros veriamos las ultimas lineas actualizarse casi instantaneamente.
+
+\begin{quoting}
+Loguéese en una Terminal y tipee “echo > a.txt” para crear el archivo “a.txt”. Luego tipee “tail –f
+\end{quoting}\\
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ echo > a.txt
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ ls
+a.txt  enunciado.pdf  Informe
+
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ tail -f a.txt
+
+
+
+
+
+
+\end{lstlisting}
+
+\begin{quoting}
+Desde otra Terminal, tipee “while (true) do date $\gg$ a.txt; sleep 2; done;”.
+\end{quoting}\\
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ while (true) do date >>  a.txt; sleep 2; done;
+
+
+
+
+
+
+\end{lstlisting}
+Este comando es un ciclo infinito que cada 2 segundos escribe la fecha actual en el archivo a.txt
+
+\begin{quoting}
+Vuelva a la terminal anterior y vea lo que sucede.
+\end{quoting}\\
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ tail -f a.txt
+
+mar 25 ago 2020 22:55:23 -03
+mar 25 ago 2020 22:55:25 -03
+mar 25 ago 2020 22:55:27 -03
+mar 25 ago 2020 22:55:29 -03
+
+\end{lstlisting}
+Como se puede ver, la terminal que ejectutó 'tail -f a.txt' empezó a mostrar, en tiempo real, la fecha correspondiente a cada ciclo ejecutado por la otra terminal.
+
+\end{subsection}
+
+\begin{subsection}{sort}
+\begin{quoting}
+¿Qué es lo que realiza el comando sort?
+\end{quoting}\\
+El comando sort nos permite ordenar un archivo o lo que ingrese por standart input (terminal)
+
+\end{subsection}
+
+\begin{subsection}{uniq}
+\begin{quoting}
+¿Qué es lo que realiza el comando uniq?
+\end{quoting}\\
+El comando uniq nos permite eliminar las lineas repetidas de un archivo, dado que la busqueda la hace con validando contra lineas adyacentes es necesario tener previamente ordenado el archivo que se quiera usar con uniq.
+
+\end{subsection}
+
+\begin{subsection}{grep}
+\begin{quoting}
+¿Para qué sirve?
+\end{quoting}\\
+El comando grep nos permite realizar busqueda de patrones o cadenas de texto dentro de un archivo o desde la misma standard input.
+
+\begin{quoting}
+Busque en el archivo “texto” todas las líneas que contengan la palabra “root”.
+\end{quoting}\\
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ grep 'root' texto
+
+root           1       0  0 ago24 ?        00:00:36 /sbin/init splash
+root           2       0  0 ago24 ?        00:00:00 [kthreadd]
+root           3       2  0 ago24 ?        00:00:00 [rcu_gp]
+root           4       2  0 ago24 ?        00:00:00 [rcu_par_gp]
+root           6       2  0 ago24 ?        00:00:00 [kworker/0:0H-kblockd]
+root           8       2  0 ago24 ?        00:00:00 [mm_percpu_wq]
+root           9       2  0 ago24 ?        00:00:00 [ksoftirqd/0]
+root          10       2  0 ago24 ?        00:00:29 [rcu_sched]
+root          11       2  0 ago24 ?        00:00:00 [migration/0]
+root          12       2  0 ago24 ?        00:00:00 [idle_inject/0]
+root          14       2  0 ago24 ?        00:00:00 [cpuhp/0]
+root          15       2  0 ago24 ?        00:00:00 [cpuhp/1]
+root          16       2  0 ago24 ?        00:00:00 [idle_inject/1]
+root          17       2  0 ago24 ?        00:00:00 [migration/1]
+root          18       2  0 ago24 ?        00:00:00 [ksoftirqd/1]
+root          21       2  0 ago24 ?        00:00:00 [cpuhp/2]
+root          22       2  0 ago24 ?        00:00:00 [idle_inject/2]
+root          23       2  0 ago24 ?        00:00:00 [migration/2]
+root          24       2  0 ago24 ?        00:00:01 [ksoftirqd/2]
+root          27       2  0 ago24 ?        00:00:00 [cpuhp/3]
+root          28       2  0 ago24 ?        00:00:00 [idle_inject/3]
+root          29       2  0 ago24 ?        00:00:00 [migration/3]
+root          30       2  0 ago24 ?        00:00:02 [ksoftirqd/3]
+root          33       2  0 ago24 ?        00:00:00 [kdevtmpfs]
+root          34       2  0 ago24 ?        00:00:00 [netns]
+root          35       2  0 ago24 ?        00:00:00 [rcu_tasks_kthre]
+root          36       2  0 ago24 ?        00:00:00 [kauditd]
+root          37       2  0 ago24 ?        00:00:00 [khungtaskd]
+root          38       2  0 ago24 ?        00:00:00 [oom_reaper]
+root          39       2  0 ago24 ?        00:00:00 [writeback]
+root          40       2  0 ago24 ?        00:00:00 [kcompactd0]
+root          41       2  0 ago24 ?        00:00:00 [ksmd]
+root          42       2  0 ago24 ?        00:00:00 [khugepaged]
+root         136       2  0 ago24 ?        00:00:00 [kintegrityd]
+root         137       2  0 ago24 ?        00:00:00 [kblockd]
+root         138       2  0 ago24 ?        00:00:00 [blkcg_punt_bio]
+root         139       2  0 ago24 ?        00:00:00 [tpm_dev_wq]
+root         140       2  0 ago24 ?        00:00:00 [ata_sff]
+root         141       2  0 ago24 ?        00:00:00 [md]
+root         142       2  0 ago24 ?        00:00:00 [edac-poller]
+root         143       2  0 ago24 ?        00:00:00 [devfreq_wq]
+root         144       2  0 ago24 ?        00:00:00 [watchdogd]
+root         148       2  0 ago24 ?        00:00:02 [kswapd0]
+root         149       2  0 ago24 ?        00:00:00 [ecryptfs-kthrea]
+root         152       2  0 ago24 ?        00:00:00 [kthrotld]
+root         153       2  0 ago24 ?        00:00:00 [acpi_thermal_pm]
+root         154       2  0 ago24 ?        00:00:00 [vfio-irqfd-clea]
+root         156       2  0 ago24 ?        00:00:00 [ipv6_addrconf]
+root         167       2  0 ago24 ?        00:00:00 [kstrp]
+root         171       2  0 ago24 ?        00:00:00 [kworker/u9:0-hci0]
+root         187       2  0 ago24 ?        00:00:00 [charger_manager]
+root         243       2  0 ago24 ?        00:00:00 [scsi_eh_0]
+root         244       2  0 ago24 ?        00:00:00 [scsi_tmf_0]
+root         245       2  0 ago24 ?        00:00:00 [scsi_eh_1]
+root         246       2  0 ago24 ?        00:00:00 [scsi_tmf_1]
+root         247       2  0 ago24 ?        00:00:00 [scsi_eh_2]
+root         248       2  0 ago24 ?        00:00:00 [scsi_tmf_2]
+root         249       2  0 ago24 ?        00:00:00 [scsi_eh_3]
+root         250       2  0 ago24 ?        00:00:00 [scsi_tmf_3]
+root         251       2  0 ago24 ?        00:00:00 [scsi_eh_4]
+root         252       2  0 ago24 ?        00:00:00 [scsi_tmf_4]
+root         253       2  0 ago24 ?        00:00:00 [scsi_eh_5]
+root         254       2  0 ago24 ?        00:00:00 [scsi_tmf_5]
+root         260       2  0 ago24 ?        00:00:01 [kworker/3:1H-events_highpri]
+root         269       2  0 ago24 ?        00:00:02 [kworker/1:1H-events_highpri]
+root         296       2  0 ago24 ?        00:00:00 [jbd2/sda6-8]
+root         297       2  0 ago24 ?        00:00:00 [ext4-rsv-conver]
+root         336       1  0 ago24 ?        00:00:02 /lib/systemd/systemd-journald
+root         368       2  0 ago24 ?        00:00:00 [loop0]
+root         372       2  0 ago24 ?        00:00:00 [loop1]
+root         376       2  0 ago24 ?        00:00:00 [loop2]
+root         379       2  0 ago24 ?        00:00:00 [loop3]
+root         380       2  0 ago24 ?        00:00:00 [loop4]
+root         381       2  0 ago24 ?        00:00:00 [loop5]
+root         383       1  0 ago24 ?        00:00:05 /lib/systemd/systemd-udevd
+root         384       2  0 ago24 ?        00:00:00 [loop6]
+root         385       2  0 ago24 ?        00:00:00 [loop7]
+root         386       2  0 ago24 ?        00:00:00 [loop8]
+root         387       2  0 ago24 ?        00:00:00 [loop9]
+root         388       2  0 ago24 ?        00:00:00 [loop10]
+root         389       2  0 ago24 ?        00:00:00 [loop11]
+root         496       2  0 ago24 ?        00:00:00 [cryptd]
+root         510       2  0 ago24 ?        00:00:00 [cfg80211]
+root         572       2  0 ago24 ?        00:00:00 [wl_event_handle]
+root         584       2  0 ago24 ?        00:00:00 [kmemstick]
+root         724       2  0 ago24 ?        00:00:01 [jbd2/sda7-8]
+root         725       2  0 ago24 ?        00:00:00 [ext4-rsv-conver]
+root         777       1  0 ago24 ?        00:00:00 /usr/lib/accountsservice/accounts-daemon
+root         778       1  0 ago24 ?        00:00:07 /usr/sbin/acpid
+root         782       1  0 ago24 ?        00:00:00 /usr/lib/bluetooth/bluetoothd
+root         783       1  0 ago24 ?        00:00:00 /usr/sbin/cron -f
+root         786       1  0 ago24 ?        00:00:14 /usr/sbin/NetworkManager --no-daemon
+root         793       1  0 ago24 ?        00:00:02 /usr/sbin/irqbalance --foreground
+root         794       1  0 ago24 ?        00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root         813       1  0 ago24 ?        00:00:03 /usr/lib/policykit-1/polkitd --no-debug
+root         820       1  0 ago24 ?        00:00:07 /usr/lib/snapd/snapd
+root         821       1  0 ago24 ?        00:00:00 /usr/libexec/switcheroo-control
+root         825       1  0 ago24 ?        00:00:02 /lib/systemd/systemd-logind
+root         826       1  0 ago24 ?        00:00:02 /usr/sbin/thermald --no-daemon --dbus-enable
+root         827       1  0 ago24 ?        00:00:04 /usr/lib/udisks2/udisksd
+root         828       1  0 ago24 ?        00:00:00 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+avahi        835     781  0 ago24 ?        00:00:00 avahi-daemon: chroot helper
+root         883       1  0 ago24 ?        00:00:00 /usr/sbin/ModemManager --filter-policy=strict
+root         919       1  0 ago24 ?        00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         926       1  0 ago24 ?        00:00:06 /usr/bin/containerd
+root         946       1  0 ago24 ?        00:00:00 /usr/sbin/gdm3
+root        1000       1  0 ago24 ?        00:00:01 /usr/sbin/apache2 -k start
+root        1097       1  0 ago24 ?        00:00:09 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root        1120       2  0 ago24 ?        00:00:00 [iprt-VBoxWQueue]
+root        1121       2  0 ago24 ?        00:00:00 [iprt-VBoxTscThr]
+root        1268       1  0 ago24 ?        00:00:02 /usr/lib/upower/upowerd
+root        1426       2  0 ago24 ?        00:00:00 bpfilter_umh
+root        1799     946  0 ago24 ?        00:00:00 gdm-session-worker [pam/gdm-password]
+root        1952       2  0 ago24 ?        00:00:00 [krfcommd]
+root        3769       1  0 00:31 ?        00:00:00 /usr/sbin/cupsd -l
+root        3770       1  0 00:31 ?        00:00:00 /usr/sbin/cups-browsed
+root        8569       2  0 01:40 ?        00:00:02 [kworker/3:2H-events_highpri]
+root       10264       2  0 02:10 ?        00:00:00 [kworker/2:0H-events_highpri]
+root       15100       2  0 03:16 ?        00:00:01 [kworker/2:2H-events_highpri]
+root       15349       2  0 03:18 ?        00:00:01 [kworker/1:2H-kblockd]
+root       15814       2  0 04:51 ?        00:00:00 [kworker/u9:1-hci0]
+root       22421       2  0 19:31 ?        00:00:00 [kworker/0:2H-events_highpri]
+root       22812       2  0 19:41 ?        00:00:02 [kworker/0:2-events]
+root       23117       2  0 21:10 ?        00:00:00 [irq/30-mei_me]
+root       24893       2  0 21:46 ?        00:00:00 [kworker/1:7-events]
+root       25963       2  0 21:56 ?        00:00:01 [kworker/1:0-events]
+root       27573       2  0 22:32 ?        00:00:00 [kworker/0:0-events]
+root       27746       2  0 22:37 ?        00:00:00 [kworker/3:2-events]
+root       28230       2  0 22:47 ?        00:00:01 [kworker/u8:3-events_power_efficient]
+root       28376       2  0 22:49 ?        00:00:00 [kworker/3:0-events]
+root       28700       2  0 22:53 ?        00:00:00 [kworker/2:0-events]
+root       29210       2  0 23:01 ?        00:00:00 [kworker/2:1-events]
+root       29214       2  0 23:01 ?        00:00:00 [kworker/u8:1-events_power_efficient]
+root       29370       2  0 23:07 ?        00:00:00 [kworker/u8:0-events_power_efficient]
+root       29754       2  0 23:13 ?        00:00:00 [kworker/u8:2-events_power_efficient]
+
+\end{lstlisting}
+
+\end{subsection}
+
+\begin{subsection}{find}
+\begin{quoting}
+¿Para qué sirve?
+\end{quoting}\\
+Este comando nos permite buscar archivos dentro de directorios.
+
+\begin{quoting}
+Busque un patrón determinado en un directorio utilizando find y grep.
+\end{quoting}\\
+
+\begin{lstlisting}[style=Ubuntu]
+~/uade_workplace/ssoo/tp1
+grios@personal-pc:~$ find . -name 'texto'
+./texto
+
+\end{lstlisting}
+El comando busca el archivo texto dentro de directorio actual.
+
+\end{subsection}
+
 \end{section}

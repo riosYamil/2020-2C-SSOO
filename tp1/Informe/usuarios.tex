@@ -1,5 +1,6 @@
 \begin{section}{Usuarios}
 
+\begin{subsection}{Superusuario}
 \begin{quoting}
 ¿Qué es la cuenta de superusuario (root) y para qué se utiliza?
 \end{quoting}
@@ -86,7 +87,9 @@ Last login: dom ago 23 00:56:08 -03 2020 on pts/0
 root@personal-pc:~# 
 \end{lstlisting}
 \end{itemize}
+\end{subsection}
 
+\begin{subsection}{adduser/addgroup}
 
 \begin{quoting}
 Investigue qué hace el comando:
@@ -129,6 +132,9 @@ root@personal-pc:~# exit
 
 La instrucción \textbf{usermod} permite modificar la información de las cuentas de usuario preexistentes, el flag \textbf{-a -G} permite agregar al usuario a un grupo (append group)\\
 
+\end{subsection}
+
+\begin{subsection}{deluser/delgroup}
 \begin{quoting}
 Investigue qué hace el comando:
 \end{quoting}
@@ -201,6 +207,8 @@ El comando groups quizá es el más adecuado para averiguar todos los grupos a l
 grios@personal-pc:~$ groups test_user
 test_user : test_user test_group
 \end{lstlisting}
-
 \end{itemize}
+
+\end{subsection}
+
 \end{section}
